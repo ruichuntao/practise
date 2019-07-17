@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:background="#bf000000"
+        android:layout_gravity="center_horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="431dp">
+
+        <com.opensource.svgaplayer.SVGAImageView
+            android:id="@+id/svga_iv"
+            android:layout_width="match_parent"
+            android:layout_height="431dp"
+            app:autoPlay="false"
+            app:clearsAfterStop="false"
+            app:fillMode="Forward" />
+
+        <LinearLayout
+            android:id="@+id/oneMore"
+            android:layout_marginBottom="75dp"
+            android:background="@drawable/onemore"
+            android:layout_centerHorizontal="true"
+            android:layout_above="@id/svga_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="vertical">
+            <TextView
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="6dp"
+                android:visibility="visible"
+                android:text="再来一次"
+                android:textColor="#AB4F24"
+                android:textSize="16sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
+
+
+
+    </RelativeLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="animation"
+        android:text="启动动画" />
+</LinearLayout>

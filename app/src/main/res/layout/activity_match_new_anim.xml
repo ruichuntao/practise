@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#111"
+    android:orientation="vertical">
+
+    <rui.view.NewMatchAnim
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="125dp" />
+
+    <TextView
+        android:id="@+id/tv1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:autoLink="all"
+        android:textColor="#123"
+        android:textSize="20sp" />
+
+    <EditText
+        android:id="@+id/ed1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="test" />
+
+    <RelativeLayout
+        android:layout_width="600dp"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/w1"
+            android:layout_width="600dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/match_wave1" />
+
+        <ImageView
+            android:id="@+id/w2"
+            android:layout_width="600dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/match_wave2" />
+
+        <ImageView
+            android:id="@+id/w3"
+            android:layout_width="600dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/match_wave3" />
+
+        <ImageView
+            android:id="@+id/w4"
+            android:layout_width="600dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/match_wave4" />
+    </RelativeLayout>
+</LinearLayout>
