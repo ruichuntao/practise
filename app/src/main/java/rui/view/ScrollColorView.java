@@ -47,7 +47,6 @@ public class ScrollColorView extends View {
             case MotionEvent.ACTION_MOVE:
                 float y = event.getY();
                 height1 += y - startY;
-                // TODO: 2019/4/15 高度 + 移动的距离
                 LinearLayout.LayoutParams params=new LinearLayout.LayoutParams (ViewGroup.LayoutParams.MATCH_PARENT, (int) (height+height1));
                 setLayoutParams(params);
 //                requestLayout();

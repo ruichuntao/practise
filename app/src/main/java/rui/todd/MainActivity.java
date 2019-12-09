@@ -1,30 +1,19 @@
 package rui.todd;
 
 import android.app.Dialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Gravity;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity implements DialogPopup.dialogListener {
@@ -149,4 +138,6 @@ public class MainActivity extends AppCompatActivity implements DialogPopup.dialo
         window.setGravity(Gravity.TOP);
         dialog.show();
     }
+
+
 }

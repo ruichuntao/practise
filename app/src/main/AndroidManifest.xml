@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".MatchNewAnimActivity"></activity>
+        <activity android:name=".TestConstraintActivity"></activity>
+        <activity android:name=".MatchNewAnimActivity" />
         <activity android:name=".SimpleAnimActivity" />
         <activity android:name=".StartAnimActivity" />
         <activity android:name=".KeJiActivity" />

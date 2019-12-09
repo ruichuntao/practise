@@ -1,20 +1,20 @@
 package rui.bean;
 
- abstract class Car {
+abstract class Car {
 
     String name = "Car";
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
     public abstract void demarre();
 }
 
- class B extends Car{
+class B extends Car {
     String name = "B";
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
@@ -23,10 +23,10 @@ package rui.bean;
     }
 }
 
- class C extends B{
+class C extends B {
     String name = "C";
 
-    public String getName(){
+    public String getName() {
         return name;
     }
 
@@ -39,8 +39,8 @@ package rui.bean;
     }
 }
 
- class D extends B{
-    public String getName(){
+class D extends B {
+    public String getName() {
         return name;
     }
 
@@ -66,17 +66,18 @@ public class Test {
         d.demarre();
 
         transfer(c);    // TransferC
-        transfer((B)c); // TransferB
+        transfer((B) c); // TransferB
         transfer(d);    // TransferB
     }
 
-    public static void transfer(B b){
+    public static void transfer(B b) {
         System.out.println("TransferB");
         b.demarre();
     }
 
-    public static void transfer(C c){
+    public static void transfer(C c) {
         System.out.println("TransferC");
         c.demarre();
     }
+
 }
