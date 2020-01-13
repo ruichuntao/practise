@@ -3,8 +3,11 @@ package rui.todd;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import java.lang.reflect.Proxy;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import okhttp3.OkHttpClient;
 import rui.view.KeJiView;
 
 public class KeJiActivity extends AppCompatActivity {

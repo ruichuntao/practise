@@ -4,6 +4,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -16,6 +17,14 @@ import java.util.Set;
 import java.util.Stack;
 
 public class LeetCode {
+
+    int[][] dict = new int[][]{{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+
+    public boolean isInArea(int[][] grid, int i, int j) {
+        if (i < 0 || j < 0 || i >= grid.length || j >= grid[0].length)
+            return false;
+        return true;
+    }
 
     public static void reorderOddEven(int[] arr) {
         // 对于输入的数组为空，或者长度小于2的只接返回
@@ -3356,37 +3365,6 @@ public class LeetCode {
     }
 
 
-    public int bagOfTokensScore(int[] tokens, int P) {
-        Arrays.sort(tokens);
-        int count = 0;
-        if (tokens.length == 0 || P < tokens[0]) {
-            return count;
-        }
-        int sum = 0;
-        for (int token : tokens) {
-            sum += token;
-        }
-        if (P >= sum)
-            return tokens.length;
-        if (tokens.length == 2)
-            return 1;
-        int s = 0;
-        int e = tokens.length - 1;
-        while (s < e) {
-            P -= tokens[s];
-            P += tokens[e];
-            sum -= tokens[s];
-            sum -= tokens[e];
-            s++;
-            e--;
-            if (P >= sum) {
-                count = e - s + 1;
-                break;
-            }
-        }
-        return count;
-    }
-
     public List<List<Integer>> combine(int n, int k) {
         List<List<Integer>> ans = new ArrayList<>();
         combineDiGui(1, n, k, new LinkedList<>(), ans);
@@ -3497,7 +3475,7 @@ public class LeetCode {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
                 if (i == 0 || j == 0 || i == board.length - 1 || j == board[i].length - 1) {
-                    if (board[i][j] == 'O') {
+                    if (board[i][j] == 'O' && v[i][j] == 0) {
                         solveDiGui(board, h, v, i, j);
                     }
                 }
@@ -3529,10 +3507,75 @@ public class LeetCode {
         }
     }
 
-    //被围绕的区域bfs解法
-    public void solveBFS(char[][] board) {
+    class Node {
+        int x;
+        int y;
 
+        public Node(int x, int y) {
+            this.x = x;
+            this.y = y;
+        }
     }
+
+    //被围绕的区域bfs解法
+    public void solve(char[][] board) {
+        if (board.length == 0)
+            return;
+        char[][] h = new char[board.length][board[0].length];
+        for (int i = 0; i < h.length; i++) {
+            for (int j = 0; j < h[i].length; j++) {
+                h[i][j] = 'X';
+            }
+        }
+        int[][] v = new int[board.length][board[0].length];
+        Queue<Node> queue = new LinkedList<>();
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                if (i == 0 || j == 0 || i == board.length - 1 || j == board[i].length - 1) {
+                    if (board[i][j] == 'O' && v[i][j] == 0) {
+                        solveBFS(board, h, v, i, j, queue);
+                    }
+                }
+            }
+        }
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[i].length; j++) {
+                board[i][j] = h[i][j];
+            }
+        }
+    }
+
+    private void solveBFS(char[][] board, char[][] h, int[][] v, int i, int j, Queue<Node> queue) {
+        queue.add(new Node(i, j));
+        v[i][j] = 1;
+        h[i][j] = 'O';
+        while (!queue.isEmpty()) {
+            Node node = queue.poll();
+            if (node.x - 1 >= 0 && board[node.x - 1][node.y] == 'O' && v[node.x - 1][node.y] == 0) {
+                v[node.x - 1][node.y] = 1;
+                h[node.x - 1][node.y] = 'O';
+                queue.add(new Node(node.x - 1, node.y));
+            }
+            if (node.y - 1 >= 0 && board[node.x][node.y - 1] == 'O' && v[node.x][node.y - 1] == 0) {
+                v[node.x][node.y - 1] = 1;
+                h[node.x][node.y - 1] = 'O';
+                queue.add(new Node(node.x, node.y - 1));
+
+            }
+            if (node.x + 1 < board.length && board[node.x + 1][node.y] == 'O' && v[node.x + 1][node.y] == 0) {
+                v[node.x + 1][node.y] = 1;
+                h[node.x + 1][node.y] = 'O';
+                queue.add(new Node(node.x + 1, node.y));
+            }
+            if (node.y + 1 < board[0].length && board[node.x][node.y + 1] == 'O' && v[node.x][node.y + 1] == 0) {
+                v[node.x][node.y + 1] = 1;
+                h[node.x][node.y + 1] = 'O';
+                queue.add(new Node(node.x, node.y + 1));
+
+            }
+        }
+    }
+
 
     public int singleNumber(int[] nums) {
         if (nums.length == 0)
@@ -3543,6 +3586,7 @@ public class LeetCode {
         return nums[nums.length - 1];
     }
 
+    //todo 3个重复数字找1个（不会）
     public int singleNumberII(int[] nums) {
         // sum取和太大
         int a = 0, b = 0;
@@ -3725,24 +3769,24 @@ public class LeetCode {
         queue.add(new int[]{i, j});
         grid[i][j] = '0';
         while (!queue.isEmpty()) {
-            int[] cur = queue.remove();
-            i = cur[0];
-            j = cur[1];
-            if (i + 1 < grid.length && grid[i + 1][j] == '1') {
-                queue.add(new int[]{i + 1, j});
-                grid[i + 1][j] = '0';
+            int[] cur = queue.poll();
+            int x = cur[0];
+            int y = cur[1];
+            if (x + 1 < grid.length && grid[x + 1][y] == '1') {
+                queue.add(new int[]{x + 1, y});
+                grid[x + 1][y] = '0';
             }
-            if (i - 1 >= 0 && grid[i - 1][j] == '1') {
-                queue.add(new int[]{i - 1, j});
-                grid[i - 1][j] = '0';
+            if (y + 1 < grid[0].length && grid[x][y + 1] == '1') {
+                queue.add(new int[]{x, y + 1});
+                grid[x][y + 1] = '0';
             }
-            if (j + 1 < grid[0].length && grid[i][j + 1] == '1') {
-                queue.add(new int[]{i, j + 1});
-                grid[i][j + 1] = '0';
+            if (y - 1 >= 0 && grid[x][y - 1] == '1') {
+                queue.add(new int[]{x, y - 1});
+                grid[x][y - 1] = '0';
             }
-            if (j - 1 >= 0 && grid[i][j - 1] == '1') {
-                queue.add(new int[]{i, j - 1});
-                grid[i][j - 1] = '0';
+            if (x - 1 >= 0 && grid[x - 1][y] == '1') {
+                queue.add(new int[]{x - 1, y});
+                grid[x - 1][y] = '0';
             }
         }
     }
@@ -4393,6 +4437,7 @@ public class LeetCode {
         }
     }
 
+    //279. 完全平方数
     public int numSquares(int n) {
         int[] dp = new int[n + 1];
         Arrays.fill(dp, Integer.MAX_VALUE);
@@ -4409,6 +4454,31 @@ public class LeetCode {
             }
         }
         return dp[n];
+    }
+
+    //279. 完全平方数BFS
+    public int numSquaresBFS(int n) {
+        int[] v = new int[n + 1];
+        Queue<int[]> queue = new LinkedList<>();
+        queue.add(new int[]{n, 1});
+        v[n] = 1;
+        while (!queue.isEmpty()) {
+            int[] cur = queue.poll();
+            int temp = cur[0];
+            int step = cur[1];
+            for (int i = 1; i < n; i++) {
+                int t = temp - i * i;
+                if (t > 0 && v[t] == 0) {
+                    v[t] = 1;
+                    queue.add(new int[]{t, step + 1});
+                } else if (t < 0)
+                    break;
+                else if (t == 0) {
+                    return step;
+                }
+            }
+        }
+        return -1;
     }
 
     public int integerBreak(int n) {
@@ -4630,7 +4700,7 @@ public class LeetCode {
         findTargetSumWaysDiGui(nums, S, i + 1, sum - temp);
     }
 
-    //目标和(动态规划并不知道怎么写的)
+    //目标和(动态规划)
     public int findTargetSumWaysDP(int[] nums, int S) {
         int[][] dp = new int[nums.length][2001];
         dp[0][nums[0] + 1000] = 1;
@@ -4782,34 +4852,51 @@ public class LeetCode {
         if (grid.length == 0)
             return 0;
         int ans = 0;
-        int[][] h = new int[grid.length][grid[0].length];
         for (int i = 0; i < grid.length; i++) {
             for (int j = 0; j < grid[i].length; j++) {
-                if (grid[i][j] == 1 && h[i][j] == 0) {
+                if (grid[i][j] == 1) {
                     maxAreaOfIslandCount = 0;
-                    maxAreaOfIslandDFS(grid, h, i, j);
+                    maxAreaOfIslandBFS(grid, i, j);
                     ans = Math.max(ans, maxAreaOfIslandCount);
-                } else
-                    h[i][j] = 1;
+                }
             }
         }
         return ans;
     }
 
-    public void maxAreaOfIslandDFS(int[][] grid, int[][] h, int i, int j) {
-        if (i == -1 || j == -1 || i == grid.length || j == grid[0].length)
-            return;
-        if (h[i][j] == 1)
-            return;
-        h[i][j] = 1;
-        if (grid[i][j] != 0) {
+    public void maxAreaOfIslandBFS(int[][] grid, int i, int j) {
+        Queue<int[]> queue = new LinkedList<>();
+        queue.add(new int[]{i, j});
+        grid[i][j] = 0;
+        while (!queue.isEmpty()) {
+            int[] cur = queue.poll();
             maxAreaOfIslandCount++;
-            maxAreaOfIslandDFS(grid, h, i + 1, j);
-            maxAreaOfIslandDFS(grid, h, i - 1, j);
-            maxAreaOfIslandDFS(grid, h, i, j + 1);
-            maxAreaOfIslandDFS(grid, h, i, j - 1);
+            for (int d = 0; d < dict.length; d++) {
+                int x = cur[0] + dict[d][0];
+                int y = cur[1] + dict[d][1];
+                if (isInArea(grid, x, y)) {
+                    if (grid[x][y] == 1) {
+                        grid[x][y] = 0;
+                        queue.add(new int[]{x, y});
+                    }
+                }
+            }
         }
     }
+
+    public void maxAreaOfIslandDFS(int[][] grid, int i, int j) {
+        if (i == -1 || j == -1 || i == grid.length || j == grid[0].length)
+            return;
+        if (grid[i][j] == 1) {
+            grid[i][j] = 0;
+            maxAreaOfIslandCount++;
+            maxAreaOfIslandDFS(grid, i + 1, j);
+            maxAreaOfIslandDFS(grid, i - 1, j);
+            maxAreaOfIslandDFS(grid, i, j + 1);
+            maxAreaOfIslandDFS(grid, i, j - 1);
+        }
+    }
+
 
     public int hIndex(int[] citations) {
         Arrays.sort(citations);
@@ -4985,6 +5072,7 @@ public class LeetCode {
         }
         return ans;
     }
+
     //todo 790. 多米诺和托米诺平铺
     public int numTilings(int N) {
         int[] dp = new int[N + 1];
@@ -5008,32 +5096,543 @@ public class LeetCode {
         return dp[N];
     }
 
+    public boolean divisorGame(int N) {
+        return (N & 1) == 0;
+    }
+
+    //984. 不含 AAA 或 BBB 的字符串
+    public String strWithout3a3b(int A, int B) {
+        int len = A + B;
+        int index = 0;
+        StringBuilder sb = new StringBuilder();
+        if (A >= B) {
+            while (index < len) {
+                if (A - B > 1) {
+                    if (A > 1) {
+                        A -= 2;
+                        index += 2;
+                        sb.append("aa");
+                    } else if (A > 0) {
+                        A--;
+                        index++;
+                        sb.append("a");
+                    }
+                    if (B > 0) {
+                        B--;
+                        index++;
+                        sb.append("b");
+                    }
+                } else {
+                    if (A > 0) {
+                        A--;
+                        index++;
+                        sb.append("a");
+                    }
+                    if (B > 0) {
+                        B--;
+                        index++;
+                        sb.append("b");
+                    }
+                }
+            }
+        } else {
+            while (index < len) {
+                if (B - A > 1) {
+                    if (B > 1) {
+                        B -= 2;
+                        index += 2;
+                        sb.append("bb");
+                    } else if (B > 0) {
+                        B--;
+                        index++;
+                        sb.append("b");
+                    }
+                    if (A > 0) {
+                        A--;
+                        index++;
+                        sb.append("a");
+                    }
+                } else {
+                    if (A > 0) {
+                        A--;
+                        index++;
+                        sb.append("a");
+                    }
+                    if (B > 0) {
+                        B--;
+                        index++;
+                        sb.append("b");
+                    }
+                }
+            }
+        }
+        return sb.toString();
+    }
+
+    public int[] prevPermOpt1(int[] A) {
+        if (A.length == 1)
+            return A;
+        int i;
+        for (i = A.length - 1; i >= 0; i--) {
+            if (i == 0)
+                return A;
+            if (A[i] < A[i - 1]) {
+                break;
+            }
+        }
+        i = i - 1;
+        int len = A.length - 1;
+        while (len > i) {
+            if (A[len] >= A[i]) {
+                len--;
+                continue;
+            }
+            if (A[len] == A[len - 1]) {
+                len--;
+                continue;
+            }
+            break;
+        }
+        int temp = A[i];
+        A[i] = A[len];
+        A[len] = temp;
+        return A;
+    }
+
+    //948. 令牌放置
+    public int bagOfTokensScore(int[] tokens, int P) {
+        Arrays.sort(tokens);
+        int count = 0;
+        if (tokens.length == 0 || P < tokens[0]) {
+            return count;
+        }
+        boolean ismax = true;
+        int cur = 0;
+        int max = tokens.length - 1;
+        while (cur <= max) {
+            if (P >= tokens[cur]) {
+                P -= tokens[cur];
+                cur++;
+                count++;
+                ismax = false;
+            } else {
+                P += tokens[max];
+                count--;
+                max--;
+                ismax = true;
+            }
+        }
+        return ismax ? count + 1 : count;
+    }
+
+    public boolean carPooling(int[][] trips, int capacity) {
+        int[] h = new int[1001];
+        for (int[] trip : trips) {
+            h[trip[1]] += trip[0];
+            h[trip[2]] -= trip[0];
+        }
+        for (int i = 1; i < h.length; i++) {
+            h[i] += h[i - 1];
+            if (h[i] > capacity)
+                return false;
+        }
+        return true;
+    }
+
+    //1007. 行相等的最少多米诺旋转
+    public int minDominoRotations(int[] A, int[] B) {
+        int i = 0;
+        int count = 0;
+        int[] Ah = new int[7];
+        int[] Bh = new int[7];
+        int len = A.length;
+        for (int j = 0; j < len; j++) {
+            Ah[A[j]]++;
+            Bh[B[j]]++;
+        }
+        int maxA = 0;
+        int maxB = 0;
+        int ai = 1;
+        int bi = 1;
+        for (int k = 1; k < 7; k++) {
+            if (Ah[k] > maxA) {
+                maxA = Ah[k];
+                ai = k;
+            }
+            if (Bh[k] > maxB) {
+                maxB = Bh[k];
+                bi = k;
+            }
+        }
+        if (maxA > maxB) {
+            while (i < len) {
+                if (A[i] != ai && B[i] != ai)
+                    return -1;
+                if (A[i] != ai) {
+                    count++;
+                }
+                i++;
+            }
+        } else {
+            while (i < len) {
+                if (A[i] != bi && B[i] != bi)
+                    return -1;
+                if (B[i] != bi) {
+                    count++;
+                }
+                i++;
+            }
+        }
+        return count;
+    }
+
+    //1247. 交换字符使得字符串相同
+    public int minimumSwap(String s1, String s2) {
+        int ans = 0;
+        int c1x = 0;
+        int c2x = 0;
+        char[] c1 = s1.toCharArray();
+        char[] c2 = s2.toCharArray();
+        for (int i = 0; i < c1.length; i++) {
+            if (c1[i] == c2[i])
+                continue;
+            if (c1[i] == 'x') {
+                c1x++;
+                if (c1x == 2) {
+                    ans++;
+                    c1x = 0;
+                }
+            }
+            if (c2[i] == 'x') {
+                c2x++;
+                if (c2x == 2) {
+                    ans++;
+                    c2x = 0;
+                }
+            }
+        }
+        if (c1x != c2x)
+            return -1;
+        if (c1x == 1)
+            return ans + 2;
+        else
+            return ans;
+    }
+
+    public int smallestDivisor(int[] nums, int threshold) {
+        int max = 1000_001;
+        int min = 1;
+        while (min < max) {
+            int mid = (max + min) >>> 1;
+            int temp = threshold;
+            int i = 0;
+            boolean can = true;
+            for (int num : nums) {
+                temp -= (num + mid - 1) / mid;
+                if (temp < 0) {
+                    can = false;
+                    break;
+                }
+            }
+            if (can)
+                max = mid;
+            else
+                min = mid + 1;
+        }
+        return min;
+    }
+
+    public int removeDuplicatesII(int[] nums) {
+        if (nums.length < 3)
+            return nums.length;
+        int cur = 1;
+        int end = 1;
+        int len = nums.length - 1;
+        while (end < nums.length && cur + 1 < nums.length) {
+            if (nums[cur] == nums[cur - 1]) {
+                if (nums[end] == nums[cur]) {
+                    end++;
+                } else {
+                    nums[cur + 1] = nums[end];
+                    cur++;
+                    end++;
+                }
+            } else if (nums[cur] < nums[cur - 1]) {
+                nums[cur] = nums[end];
+                end++;
+            } else {
+                cur++;
+                if (end < cur)
+                    end = cur;
+            }
+        }
+        return cur + 1;
+    }
+
+    int maxBill = 0;
+
+    public int tallestBillboard(int[] rods) {
+        Integer[] temp = new Integer[rods.length];
+        int sum = 0;
+        for (int i = 0; i < rods.length; i++) {
+            temp[i] = rods[i];
+            sum += rods[i];
+        }
+        Arrays.sort(temp, Collections.reverseOrder());
+        tallestBillDFS(0, temp, rods.length, 0, 0, sum);
+        return maxBill;
+    }
+
+    public void tallestBillDFS(int i, Integer[] rods, int len, int left, int right, int sum) {
+        if (left == right) {
+            maxBill = Math.max(maxBill, left);
+        }
+        if (Math.abs(left - right) > sum || left + right + sum <= maxBill * 2)
+            return;
+        if (i == len)
+            return;
+        tallestBillDFS(i + 1, rods, len, left + rods[i], right, sum - rods[i]);
+        tallestBillDFS(i + 1, rods, len, left, right + rods[i], sum - rods[i]);
+        tallestBillDFS(i + 1, rods, len, left, right, sum - rods[i]);
+    }
+
+    //207. 课程表BFS
+    public boolean canFinishBFS(int numCourses, int[][] prerequisites) {
+        int[] indegrees = new int[numCourses];
+        for (int[] prerequisite : prerequisites) {
+            indegrees[prerequisite[0]]++;
+        }
+        Queue<Integer> queue = new LinkedList<>();
+        for (int i = 0; i < numCourses; i++) {
+            if (indegrees[i] == 0)
+                queue.add(i);
+        }
+        while (!queue.isEmpty()) {
+            int cur = queue.poll();
+            numCourses--;
+            for (int[] prerequisite : prerequisites) {
+                if (prerequisite[1] == cur) {
+                    indegrees[prerequisite[0]]--;
+                    if (indegrees[prerequisite[0]] == 0)
+                        queue.add(prerequisite[0]);
+                }
+            }
+        }
+        return numCourses == 0;
+    }
+
+    //207. 课程表DFS
+    public boolean canFinish(int numCourses, int[][] prerequisites) {
+        int[][] h = new int[numCourses][numCourses];
+        int[] v = new int[numCourses];
+        for (int[] prerequisite : prerequisites) {
+            h[prerequisite[1]][prerequisite[0]] = 1;
+        }
+        for (int i = 0; i < numCourses; i++) {
+            if (!canFinishDFS(i, v, h))
+                return false;
+        }
+        return true;
+    }
+
+    public boolean canFinishDFS(int cur, int[] v, int[][] h) {
+        if (v[cur] == 1) return false;
+        if (v[cur] == -1) return true;
+        v[cur] = 1;
+        for (int i = 0; i < v.length; i++) {
+            if (h[cur][i] == 1 && !canFinishDFS(i, v, h))
+                return false;
+        }
+        v[cur] = -1;
+        return true;
+    }
+
+    public char[][] updateBoard(char[][] board, int[] click) {
+        int[][] v = new int[board.length][board[0].length];
+        if (board[click[0]][click[1]] == 'M') {
+            board[click[0]][click[1]] = 'X';
+            return board;
+        }
+        Queue<int[]> queue = new LinkedList<>();
+        queue.add(click);
+        int[][] dict = new int[][]{{-1, -1}, {-1, 0}, {-1, 1}, {0, 1}, {0, -1}, {1, -1}, {1, 0}, {1, 1}};
+        while (!queue.isEmpty()) {
+            boolean boom = false;
+            int[] cur = queue.poll();
+            int x = cur[0];
+            int y = cur[1];
+            if (board[x][y] == 'E')
+                board[x][y] = 'B';
+            for (int[] ints : dict) {
+                int tempx = x + ints[0];
+                int tempy = y + ints[1];
+                if (tempx < 0 || tempx >= board.length || tempy < 0 || tempy >= board[0].length)
+                    continue;
+                if (board[tempx][tempy] == 'M' && v[x][y] == 0) {
+                    boom = true;
+                    if (board[x][y] == 'B') {
+                        board[x][y] = '1';
+                    } else {
+                        board[x][y]++;
+                    }
+                }
+            }
+            if (!boom) {
+                for (int[] ints : dict) {
+                    int tempx = x + ints[0];
+                    int tempy = y + ints[1];
+                    if (tempx < 0 || tempx >= board.length || tempy < 0 || tempy >= board[0].length)
+                        continue;
+                    if (board[tempx][tempy] == 'E' && v[x][y] == 0) {
+                        queue.add(new int[]{tempx, tempy});
+                    }
+                }
+            }
+            v[x][y] = 1;
+        }
+        return board;
+    }
+
+    //todo 424. 替换后的最长重复字符(滑动窗口)
+    public int characterReplacement(String s, int k) {
+        if (k >= s.length())
+            return s.length();
+        if (s.length() == 0) return 0;
+        int l = 0, r = 0, res = 0;
+        int[] dict = new int[256];
+        int maxLen = 0;
+        while (r < s.length()) {
+            dict[s.charAt(r)]++;
+            maxLen = Math.max(maxLen, dict[s.charAt(r)]);
+            while ((r - l + 1 - maxLen) > k) {
+                dict[s.charAt(l++)]--;
+            }
+            res = Math.max(res, r - l + 1);
+            r++;
+        }
+        return res;
+    }
+
+    //567. 字符串的排列
+    public boolean checkInclusion(String s1, String s2) {
+        if (s1.length() > s2.length())
+            return false;
+        char[] c = s1.toCharArray();
+        char[] c3 = s2.toCharArray();
+        int start = 0;
+        int end = c.length;
+        int[] h = new int[26];
+        int[] h2 = new int[26];
+        for (char c1 : c) {
+            h[c1 - 'a']++;
+        }
+        char[] c2 = s2.substring(start, end).toCharArray();
+        for (char c1 : c2) {
+            h2[c1 - 'a']++;
+        }
+        if (Arrays.equals(h, h2)) {
+            return true;
+        }
+        while (end < s2.length()) {
+            h2[c3[start] - 'a']--;
+            h2[c3[end] - 'a']++;
+            if (Arrays.equals(h, h2)) {
+                return true;
+            }
+            start++;
+            end++;
+        }
+        return false;
+    }
+
+    //524. 通过删除字母匹配到字典里最长单词
+    public String findLongestWord(String s, List<String> d) {
+        String ans = "";
+        char[] c = s.toCharArray();
+        for (String t : d) {
+            char[] temp = t.toCharArray();
+            int start1 = 0;
+            int start2 = 0;
+            while (start1 < c.length && start2 < temp.length) {
+                if (c[start1] == temp[start2]) {
+                    start2++;
+                }
+                start1++;
+            }
+            if (start2 == temp.length) {
+                if (t.length() > ans.length()) {
+                    ans = t;
+                } else if (t.length() == ans.length()) {
+                    if (ans.compareTo(t) > 0) {
+                        ans = t;
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+
+    //todo 457. 环形数组循环
+    public boolean circularArrayLoop(int[] nums) {
+        return false;
+    }
+
+    //1255. 得分最高的单词集合
+    int maxScoreWordsans = 0;
+
+    public int maxScoreWords(String[] words, char[] letters, int[] score) {
+        int[] h = new int[26];
+        for (char c : letters) {
+            h[c - 'a']++;
+        }
+        maxScoreWordsDFS(words, h, score, 0, 0);
+        return maxScoreWordsans;
+    }
+
+    public void maxScoreWordsDFS(String[] words, int[] h, int[] score, int i, int sum) {
+        if (i >= words.length)
+            return;
+        int[] temp = h.clone();
+        int tempSum = 0;
+        char[] tempc = words[i].toCharArray();
+        for (char c : tempc) {
+            if (temp[c - 'a'] > 0) {
+                tempSum += score[c - 'a'];
+                temp[c - 'a']--;
+            } else {
+                maxScoreWordsDFS(words, h, score, i + 1, sum);
+                return;
+            }
+        }
+        maxScoreWordsans = Math.max(maxScoreWordsans, sum + tempSum);
+        maxScoreWordsDFS(words, temp, score, i + 1, sum + tempSum);
+        maxScoreWordsDFS(words, h, score, i + 1, sum);
+    }
+
+
+    //太长了维护太难了，换新的
     public static void main(String[] args) {
         LeetCode t = new LeetCode();
-        int[] nums = new int[]{1, 3, 5, 4, 7, 7};
+        int[] nums = new int[]{-2, 1, -1, -2, -2};
+        int[] nums2 = new int[]{3, 2, 3, 1, 3, 2, 3, 3, 2};
         String[] numsB = new String[]{"10", "0001", "111001", "1", "0"};
         int[][] ball = new int[][]{{3, 2}, {-2, 2}};
         int[][] grid = new int[][]{
-                {1, 2, 3},
-                {4, 5, 6},
-                {7, 8, 9}
+                {1, 1, 0, 0, 0},
+                {1, 1, 0, 0, 0},
+                {0, 0, 0, 1, 1},
+                {0, 0, 0, 1, 1},
         };
-        System.out.println(t.numTilings(100));
+        char[][] matrix = new char[][]{
+                {'B', '1', 'E', '1', 'B'},
+                {'B', '1', 'M', '1', 'B'},
+                {'B', '1', '1', '1', 'B'},
+                {'B', 'B', 'B', 'B', 'B'}
+        };
+        System.out.println(t.maxAreaOfIsland(grid));
 //        System.out.println(t.fizzBuzz(15));
 
 
-//        char[][] matrix = new char[][]{
-//                {'1', '0', '1', '0', '0', '1', '1', '1', '0'},
-//                {'1', '1', '1', '0', '0', '0', '0', '0', '1'},
-//                {'0', '0', '1', '1', '0', '0', '0', '1', '1'},
-//                {'0', '1', '1', '0', '0', '1', '0', '0', '1'},
-//                {'1', '1', '0', '1', '1', '0', '0', '1', '0'},
-//                {'0', '1', '1', '1', '1', '1', '1', '0', '1'},
-//                {'1', '0', '1', '1', '1', '0', '0', '1', '0'},
-//                {'1', '1', '1', '0', '1', '0', '0', '0', '1'},
-//                {'0', '1', '1', '1', '1', '0', '0', '1', '0'},
-//                {'1', '0', '0', '1', '1', '1', '0', '0', '0'}
-//        };
 //        List<Integer> price = new ArrayList<>();
 //        List<List<Integer>> special = new ArrayList<>();
 //        List<Integer> needs = new ArrayList<>();

@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="rui.todd">
 
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
     <application
         android:name=".ToddApplication"
         android:allowBackup="true"
@@ -12,7 +15,32 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".TestConstraintActivity"></activity>
+        <activity
+            android:name=".SIngleInstance2Activity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".SingleInstanceActivity"
+            android:launchMode="singleInstance" />
+        <activity
+            android:name=".SingleTaskActivity"
+            android:launchMode="singleTask" />
+        <activity
+            android:name=".SingleTopActivity"
+            android:launchMode="singleTop" />
+
+        <provider
+            android:name="android.support.v4.content.FileProvider"
+            android:authorities="rui.todd.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
+        <activity android:name=".StudyActivity" />
+        <activity android:name=".CircleActivity" />
+        <activity android:name=".TestConstraintActivity" />
         <activity android:name=".MatchNewAnimActivity" />
         <activity android:name=".SimpleAnimActivity" />
         <activity android:name=".StartAnimActivity" />

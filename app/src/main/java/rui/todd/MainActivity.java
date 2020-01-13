@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -140,4 +141,31 @@ public class MainActivity extends AppCompatActivity implements DialogPopup.dialo
     }
 
 
+    public void clickCirle(View view) {
+        startActivity(new Intent(this, CircleActivity.class));
+    }
+
+    public void clickStudy(View view) {
+        startActivity(new Intent(this, StudyActivity.class));
+    }
+
+    public void launchTop(View view) {
+        startActivity(new Intent(this, SingleTopActivity.class));
+
+    }
+
+    public void launchTask(View view) {
+        startActivity(new Intent(this, SingleTaskActivity.class));
+
+    }
+
+    public void launchInstance(View view) {
+        startActivity(new Intent(this, SingleInstanceActivity.class));
+
+    }
+
+    public void launchInstance2(View view) {
+        startActivity(new Intent(this, SIngleInstance2Activity.class));
+
+    }
 }

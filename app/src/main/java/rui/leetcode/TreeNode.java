@@ -8,13 +8,4 @@ public class TreeNode {
     TreeNode(int x) {
         val = x;
     }
-
-    public boolean findTarget(TreeNode root, int k) {
-
-        return true;
-    }
-
-    public static void main(String[] args) {
-
-    }
 }
