@@ -1,11 +1,13 @@
 package rui.leetcode;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 // Definition for a Node.
 class Node {
     public int val;
-    public List<Node> children;
+    public List<Node> neighbors;
 
     public Node() {
 
@@ -17,6 +19,11 @@ class Node {
 
     public Node(int _val, List<Node> _children) {
         val = _val;
-        children = _children;
+        neighbors = _children;
+    }
+
+
+    public static void main(String[] args) {
+
     }
 };

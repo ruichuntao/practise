@@ -4,37 +4,48 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class MapSum {
+    int sum = 0;
+    MapSum[] next = new MapSum[128];
+    HashMap<String, Integer>  map = new HashMap<>();
 
-    /**
-     * Initialize your data structure here.
-     */
-    Map<String, Integer> map;
-
-    // todo  677. 键值映射 前缀树
+    /** Initialize your data structure here. */
     public MapSum() {
-        map = new HashMap<>();
+
     }
 
     public void insert(String key, int val) {
-        if (key.isEmpty())
-            return;
-        for (int i = 1; i <= key.length(); i++) {
-            String temp = key.substring(0, i);
-            map.put(temp, map.getOrDefault(temp, 0) + val);
+        int pre = 0;
+        if (map.containsKey(key)) {
+            pre = map.get(key);
         }
+        map.put(key, val);
+        MapSum root = this;
+        char[] c = key.toCharArray();
+        for (char ch : c) {
+            if (root.next[ch] == null) {
+                root.next[ch] = new MapSum();
+            }
+            root = root.next[ch];
+            root.sum += val - pre;
+        }
+
     }
 
     public int sum(String prefix) {
-        if (!map.containsKey(prefix))
-            return 0;
-        return map.get(prefix);
+        MapSum root = this;
+        char[] c = prefix.toCharArray();
+        for (char ch : c) {
+            if (root.next[ch] == null) return 0;
+            root = root.next[ch];
+        }
+        return root.sum;
     }
 
     public static void main(String[] args) {
-        MapSum mapSum = new MapSum();
-        mapSum.insert("aa", 3);
-        System.out.println(mapSum.sum("a"));
-        mapSum.insert("aa", 2);
-        System.out.println(mapSum.sum("a"));
+        MapSum sum = new MapSum();
+        sum.insert("aa",3);
+        System.out.println(sum.sum("a"));
+        sum.insert("aa",2);
+        System.out.println(sum.sum("a"));
     }
 }

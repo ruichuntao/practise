@@ -5493,7 +5493,7 @@ public class LeetCode {
         return board;
     }
 
-    //todo 424. 替换后的最长重复字符(滑动窗口)
+    //424. 替换后的最长重复字符(滑动窗口)
     public int characterReplacement(String s, int k) {
         if (k >= s.length())
             return s.length();

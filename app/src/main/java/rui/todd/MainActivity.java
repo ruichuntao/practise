@@ -14,6 +14,8 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
+import com.vanniktech.emoji.EmojiPopup;
+
 import java.io.ByteArrayOutputStream;
 import java.util.Locale;
 
@@ -24,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements DialogPopup.dialo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
     }
 
 
@@ -146,26 +149,19 @@ public class MainActivity extends AppCompatActivity implements DialogPopup.dialo
     }
 
     public void clickStudy(View view) {
-        startActivity(new Intent(this, StudyActivity.class));
+        startActivity(new Intent(this, TestHorRecyclerActivity.class));
     }
 
-    public void launchTop(View view) {
-        startActivity(new Intent(this, SingleTopActivity.class));
-
+    public void clickEmoji(View view) {
+        startActivity(new Intent(this, EmojiActivity.class));
     }
 
-    public void launchTask(View view) {
-        startActivity(new Intent(this, SingleTaskActivity.class));
 
+    public void clickPlay(View view) {
+        startActivity(new Intent(this, AutoVideoActivity.class));
     }
 
-    public void launchInstance(View view) {
-        startActivity(new Intent(this, SingleInstanceActivity.class));
-
-    }
-
-    public void launchInstance2(View view) {
-        startActivity(new Intent(this, SIngleInstance2Activity.class));
-
+    public void clickScreen(View view) {
+        startActivity(new Intent(this, ScreenTimeActivity.class));
     }
 }

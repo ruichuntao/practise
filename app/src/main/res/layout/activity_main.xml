@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -186,6 +187,7 @@
             android:onClick="clickDialog"
             android:text="Dialog显示view"
             android:textSize="30sp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -193,6 +195,7 @@
             android:onClick="clickCirle"
             android:text="圆角"
             android:textSize="30sp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -200,33 +203,29 @@
             android:onClick="clickStudy"
             android:text="照相"
             android:textSize="30sp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:onClick="launchTop"
-            android:text="启动top模式"
+            android:onClick="clickEmoji"
+            android:text="表情"
             android:textSize="30sp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:onClick="launchTask"
-            android:text="启动task模式"
+            android:onClick="clickPlay"
+            android:text="自动播放"
             android:textSize="30sp" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:onClick="launchInstance"
-            android:text="启动instance模式"
-            android:textSize="30sp" />
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:onClick="launchInstance2"
-            android:text="启动instance2模式"
+            android:onClick="clickScreen"
+            android:text="屏幕使用时间"
             android:textSize="30sp" />
     </LinearLayout>
 </ScrollView>

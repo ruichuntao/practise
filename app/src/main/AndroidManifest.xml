@@ -15,6 +15,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".ScreenTimeActivity"/>
+        <activity android:name=".AutoVideoActivity"/>
+        <activity
+            android:name=".EmojiActivity"
+            android:screenOrientation="fullSensor" />
+        <activity android:name=".TestHorRecyclerActivity" />
         <activity
             android:name=".SIngleInstance2Activity"
             android:launchMode="singleInstance" />
@@ -98,7 +104,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".OpenBoxActivity"
-            android:screenOrientation="sensorLandscape" />
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
