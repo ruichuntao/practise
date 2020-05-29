@@ -5,28 +5,18 @@ import java.math.*;
 
 public class Main {
 
-    public static void main(String[] args) {
-        String [] aa = new String[3];
+    static int MOD = (int) 1e9 + 7;
 
-//        String s = "bbbbbbbbbbbccccccccccabbbbaabbvvcccccbbbbbcc";
-//        Stack<Character> stack = new Stack<>();
-//        char[] c = s.toCharArray();
-//        StringBuilder sb = new StringBuilder();
-//        for (char ch : c) {
-//            if (ch == 'c' && !stack.isEmpty()) {
-//                stack.pop();
-//            } else if (ch == 'b') {
-//                stack.push(ch);
-//            } else if (ch != 'c') {
-//                while (!stack.isEmpty()) {
-//                    sb.append(stack.pop());
-//                }
-//                sb.append(ch);
-//            }
-//        }
-//        while (!stack.isEmpty()) {
-//            sb.append(stack.pop());
-//        }
-//        System.out.println(sb.toString());
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        Main t = new Main();
+        String[][] s = new String[][]{
+                        {"#", ".", ".", "#", "#", "#", "#", "#"},
+                        {"#", ".", ".", "T", "#", ".", ".", "#"},
+                        {"#", ".", ".", ".", "#", "B", ".", "#"},
+                        {"#", ".", ".", ".", ".", ".", ".", "#"},
+                        {"#", ".", ".", ".", "#", ".", "S", "#"},
+                        {"#", ".", ".", "#", "#", "#", "#", "#"}
+        };
     }
 }

@@ -10,11 +10,10 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
-
-import com.vanniktech.emoji.EmojiPopup;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Locale;
@@ -26,7 +25,6 @@ public class MainActivity extends AppCompatActivity implements DialogPopup.dialo
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
     }
 
 
@@ -163,5 +161,9 @@ public class MainActivity extends AppCompatActivity implements DialogPopup.dialo
 
     public void clickScreen(View view) {
         startActivity(new Intent(this, ScreenTimeActivity.class));
+    }
+
+    public void clickConstraint(View view) {
+
     }
 }

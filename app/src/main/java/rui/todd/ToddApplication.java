@@ -1,16 +1,19 @@
 package rui.todd;
 
 import android.app.Application;
-
-import com.bumptech.glide.module.AppGlideModule;
-import com.vanniktech.emoji.EmojiManager;
-import com.vanniktech.emoji.google.GoogleEmojiProvider;
+import android.content.Context;
 
 public class ToddApplication extends Application {
+
+    public static Context application;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        EmojiManager.install(new GoogleEmojiProvider());
+        application = this;
+    }
+
+    public static Context getApplication() {
+        return application;
     }
 }

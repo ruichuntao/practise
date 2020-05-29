@@ -4152,7 +4152,25 @@ public class LeetCode1 {
         return ans;
     }
 
-
+    public int largest1BorderedSquare(int[][] grid) {
+        int m = grid.length;
+        int n = grid[0].length;
+        int[][][] dp = new int[m + 1][n + 1][2];
+        int ans = 0;
+        for (int i = 1; i <= m; i++) {
+            for (int j = 1; j <= n; j++) {
+                if (grid[i - 1][j - 1] == 0) continue;
+                dp[i][j][0] = dp[i - 1][j][0] + 1;
+                dp[i][j][1] = dp[i][j - 1][1] + 1;
+                int min = Math.min(dp[i][j][0], dp[i][j][1]);
+                for (int k = 0; k < min; k++) {
+                    if (dp[i - k][j][1] >= k + 1 && dp[i][j - k][0] >= k + 1)
+                        ans = Math.max(ans, k + 1);
+                }
+            }
+        }
+        return ans * ans;
+    }
 
     public static void main(String[] args) {
         LeetCode1 t = new LeetCode1();
@@ -4161,9 +4179,10 @@ public class LeetCode1 {
         int[] nums3 = new int[]{10, 9, 2, 5, 3, 7, 101, 18};
         int[][] boxs = new int[][]{
                 {1, 1, 1},
-                {2, 2, 2},
-                {3, 3, 3}
+                {1, 0, 1},
+                {1, 1, 1}
         };
+        out.println(t.largest1BorderedSquare(boxs));
 
 //        String s = "[10,-2,8,-4,6,7,5]";
 //        TreeNode root = Codec.deserialize(s);
