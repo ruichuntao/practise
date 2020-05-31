@@ -239,8 +239,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="ConstraintLayout学习"
-            android:onClick="clickConstraint"
+            android:text="algorithm动画"
+            android:onClick="clickAlgorithm"
             android:textSize="30sp" />
 
     </LinearLayout>

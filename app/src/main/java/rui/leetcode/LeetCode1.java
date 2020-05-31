@@ -4182,7 +4182,7 @@ public class LeetCode1 {
                 {1, 0, 1},
                 {1, 1, 1}
         };
-        out.println(t.largest1BorderedSquare(boxs));
+        out.println(0 & 1);
 
 //        String s = "[10,-2,8,-4,6,7,5]";
 //        TreeNode root = Codec.deserialize(s);

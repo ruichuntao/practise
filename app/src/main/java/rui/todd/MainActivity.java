@@ -163,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements DialogPopup.dialo
         startActivity(new Intent(this, ScreenTimeActivity.class));
     }
 
-    public void clickConstraint(View view) {
-
+    public void clickAlgorithm(View view) {
+        startActivity(new Intent(this, MazeActivity.class));
     }
 }
