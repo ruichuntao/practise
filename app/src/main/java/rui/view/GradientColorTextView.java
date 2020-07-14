@@ -1,12 +1,9 @@
 package rui.view;
 
 import android.content.Context;
-import android.graphics.Canvas;
 import android.graphics.LinearGradient;
-import android.graphics.Paint;
-import android.graphics.Rect;
 import android.graphics.Shader;
-import android.support.v7.widget.AppCompatTextView;
+import androidx.appcompat.widget.AppCompatTextView;
 import android.util.AttributeSet;
 
 public class GradientColorTextView extends AppCompatTextView {

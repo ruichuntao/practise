@@ -5,26 +5,47 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.annotation.NonNull;
+import androidx.core.app.ActivityCompat;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.util.Pair;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import java.io.ByteArrayOutputStream;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
+
+import rui.view.FlexRecyclerView;
 
 public class MainActivity extends AppCompatActivity implements DialogPopup.dialogListener {
     private static final String TAG = "MainActivity";
+    private FlexRecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        recyclerView = findViewById(R.id.recycler_view);
+        List<String> list = new ArrayList<>();
+        for (int i = 0; i < (1 << 8); i++) {
+            list.add("第" + i + "个");
+        }
+        FlexRecyclerView.Adapter adapter = new FlexRecyclerView.Adapter(this, list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        recyclerView.setAdapter(adapter);
+        adapter.notifyDataSetChanged();
     }
 
 
@@ -165,5 +186,10 @@ public class MainActivity extends AppCompatActivity implements DialogPopup.dialo
 
     public void clickAlgorithm(View view) {
         startActivity(new Intent(this, MazeActivity.class));
+    }
+
+
+    public void clicksence(View view) {
+        startActivity(new Intent(this, SceneActivity.class));
     }
 }

@@ -1,8 +1,7 @@
 package rui.todd;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.animation.Interpolator;
 import android.view.animation.LinearInterpolator;
 
 import com.bm.library.Info;

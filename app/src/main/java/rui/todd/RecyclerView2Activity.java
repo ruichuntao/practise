@@ -1,10 +1,10 @@
 package rui.todd;
 
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +14,7 @@ import butterknife.ButterKnife;
 import rui.view.NoFlingRecyclerView;
 import rui.adapter.RecyclerAdapter;
 
-import static android.support.v7.widget.RecyclerView.SCROLL_STATE_DRAGGING;
+import static androidx.recyclerview.widget.RecyclerView.SCROLL_STATE_DRAGGING;
 
 public class RecyclerView2Activity extends AppCompatActivity {
     @BindView(R.id.rv1)

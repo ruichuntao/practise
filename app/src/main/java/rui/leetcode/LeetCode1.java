@@ -1,31 +1,18 @@
 package rui.leetcode;
 
-import android.support.v7.util.DiffUtil;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
-import java.util.PriorityQueue;
 import java.util.Queue;
-import java.util.Scanner;
 import java.util.Set;
-import java.util.SortedSet;
 import java.util.Stack;
-import java.util.TreeSet;
-import java.util.concurrent.PriorityBlockingQueue;
 
 import static java.lang.System.out;
 
@@ -4152,6 +4139,56 @@ public class LeetCode1 {
         return ans;
     }
 
+    public int[] shortestAlternatingPaths(int n, int[][] red_edges, int[][] blue_edges) {
+        int[] ans = new int[n];
+        Arrays.fill(ans, -1);
+        ans[0] = 0;
+        List<List<Integer>> red = new ArrayList<>();
+        List<List<Integer>> blue = new ArrayList<>();
+        for (int i = 0; i <= n; i++) {
+            red.add(new ArrayList<>());
+            blue.add(new ArrayList<>());
+        }
+        // 1 节点 2 红蓝(0 / 1) 3 步数
+        Queue<int[]> queue = new ArrayDeque<>();
+        for (int[] r : red_edges) {
+            if (r[0] == 0) {
+                queue.add(new int[]{r[1], 0, 1});
+                ans[r[1]] = 1;
+            }
+            red.get(r[0]).add(r[1]);
+        }
+        for (int[] r : blue_edges) {
+            if (r[0] == 0) {
+                queue.add(new int[]{r[1], 1, 1});
+                ans[r[1]] = 1;
+            }
+            blue.get(r[0]).add(r[1]);
+        }
+        while (!queue.isEmpty()) {
+            int[] cur = queue.poll();
+            int x = cur[0];
+            int color = cur[1];
+            int step = cur[2];
+            if (color == 0) {
+                for (int nx : blue.get(x)) {
+                    if (ans[nx] == -1) {
+                        ans[nx] = step;
+                        queue.add(new int[]{nx, color ^ 1, step + 1});
+                    }
+                }
+            } else {
+                for (int nx : red.get(x)) {
+                    if (ans[nx] == -1) {
+                        ans[nx] = step;
+                        queue.add(new int[]{nx, color ^ 1, step + 1});
+                    }
+                }
+            }
+        }
+        return ans;
+    }
+
     public int largest1BorderedSquare(int[][] grid) {
         int m = grid.length;
         int n = grid[0].length;
@@ -4172,20 +4209,18 @@ public class LeetCode1 {
         return ans * ans;
     }
 
+
     public static void main(String[] args) {
         LeetCode1 t = new LeetCode1();
         int[] nums = new int[]{1, 2, 3, 3};
         int[] nums2 = new int[]{100, 150, 90, 190, 95, 110};
         int[] nums3 = new int[]{10, 9, 2, 5, 3, 7, 101, 18};
-        int[][] boxs = new int[][]{
-                {1, 1, 1},
-                {1, 0, 1},
-                {1, 1, 1}
+        int[][] graph = new int[][]{
+                {1, 2, 3},
+                {0},
+                {0},
+                {0}
         };
-        out.println(0 & 1);
-
-//        String s = "[10,-2,8,-4,6,7,5]";
-//        TreeNode root = Codec.deserialize(s);
 
 //        int[][] grid = new int[][]{};
 //        out.println(t.reversePairs(nums2));

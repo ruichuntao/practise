@@ -2,7 +2,7 @@ package rui.todd;
 
 import android.animation.Animator;
 import android.animation.AnimatorSet;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageView;

@@ -3,6 +3,14 @@
   <component name="LeetcodeEditor">
     <option name="projectConfig">
       <map>
+        <entry key="/var/folders/vp/x8ns48kx7xn3_z1v0f6qdkhc0000gn/T/leetcode/editor/cn/[1000]合并石头的最低成本.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="/var/folders/vp/x8ns48kx7xn3_z1v0f6qdkhc0000gn/T/leetcode/editor/cn/[1000]合并石头的最低成本.java" />
+              <option name="questionId" value="1042" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="/var/folders/vp/x8ns48kx7xn3_z1v0f6qdkhc0000gn/T/leetcode/editor/cn/[1018]可被 5 整除的二进制前缀.java">
           <value>
             <LeetcodeEditor>
@@ -16,6 +24,22 @@
             <LeetcodeEditor>
               <option name="path" value="/var/folders/vp/x8ns48kx7xn3_z1v0f6qdkhc0000gn/T/leetcode/editor/cn/[1031]两个非重叠子数组的最大和.java" />
               <option name="questionId" value="1096" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="/var/folders/vp/x8ns48kx7xn3_z1v0f6qdkhc0000gn/T/leetcode/editor/cn/[1037]有效的回旋镖.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="/var/folders/vp/x8ns48kx7xn3_z1v0f6qdkhc0000gn/T/leetcode/editor/cn/[1037]有效的回旋镖.java" />
+              <option name="questionId" value="1115" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="/var/folders/vp/x8ns48kx7xn3_z1v0f6qdkhc0000gn/T/leetcode/editor/cn/[1040]移动石子直到连续 II.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="/var/folders/vp/x8ns48kx7xn3_z1v0f6qdkhc0000gn/T/leetcode/editor/cn/[1040]移动石子直到连续 II.java" />
+              <option name="questionId" value="1113" />
             </LeetcodeEditor>
           </value>
         </entry>
@@ -43,6 +67,14 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="/var/folders/vp/x8ns48kx7xn3_z1v0f6qdkhc0000gn/T/leetcode/editor/cn/[1420]生成数组.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="/var/folders/vp/x8ns48kx7xn3_z1v0f6qdkhc0000gn/T/leetcode/editor/cn/[1420]生成数组.java" />
+              <option name="questionId" value="1535" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="/var/folders/vp/x8ns48kx7xn3_z1v0f6qdkhc0000gn/T/leetcode/editor/cn/[312]戳气球.java">
           <value>
             <LeetcodeEditor>
@@ -51,11 +83,27 @@
             </LeetcodeEditor>
           </value>
         </entry>
+        <entry key="/var/folders/vp/x8ns48kx7xn3_z1v0f6qdkhc0000gn/T/leetcode/editor/cn/[688]“马”在棋盘上的概率.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="/var/folders/vp/x8ns48kx7xn3_z1v0f6qdkhc0000gn/T/leetcode/editor/cn/[688]“马”在棋盘上的概率.java" />
+              <option name="questionId" value="688" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="/var/folders/vp/x8ns48kx7xn3_z1v0f6qdkhc0000gn/T/leetcode/editor/cn/[767]重构字符串.java">
           <value>
             <LeetcodeEditor>
               <option name="path" value="/var/folders/vp/x8ns48kx7xn3_z1v0f6qdkhc0000gn/T/leetcode/editor/cn/[767]重构字符串.java" />
               <option name="questionId" value="778" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="/var/folders/vp/x8ns48kx7xn3_z1v0f6qdkhc0000gn/T/leetcode/editor/cn/[818]赛车.java">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="/var/folders/vp/x8ns48kx7xn3_z1v0f6qdkhc0000gn/T/leetcode/editor/cn/[818]赛车.java" />
+              <option name="questionId" value="836" />
             </LeetcodeEditor>
           </value>
         </entry>

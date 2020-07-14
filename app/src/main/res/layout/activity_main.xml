@@ -9,6 +9,11 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <rui.view.FlexRecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <LinearLayout
             android:id="@+id/main"
             android:layout_width="match_parent"
@@ -148,10 +153,10 @@
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="vertical"
-            android:visibility="gone"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone">
 
 
             <TextView
@@ -239,9 +244,28 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center_horizontal"
-            android:text="algorithm动画"
             android:onClick="clickAlgorithm"
+            android:text="algorithm动画"
             android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/card"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:text="card动画"
+            android:textSize="30sp"
+            android:transitionName="card" />
+
+        <TextView
+            android:id="@+id/scene动画"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:onClick="clicksence"
+            android:text="scene动画"
+            android:textSize="30sp" />
+
 
     </LinearLayout>
 </ScrollView>
