@@ -91,8 +91,27 @@ public class Main {
         return true;
     }
 
+    public boolean dfs(TreeNode a, TreeNode b) {
+        if (b == null) return true;
+        if (a == null) return false;
+        if (a.val != b.val) return false;
+        return dfs(a.left, b.left) && dfs(a.right, b.right);
+
+    }
+
+    public boolean isSubStructure(TreeNode A, TreeNode B) {
+        if (B == null) return false;
+        if (A == null) return false;
+        return isSubStructure(A.left, B) || isSubStructure(A.right, B) || dfs(A, B);
+    }
+
+
+
     public static void main(String[] args) {
         Main t = new Main();
+        TreeNode a = Codec.deserialize("[3,4,5,1,2]");
+        TreeNode b = Codec.deserialize("[4,1]");
+        System.out.println(t.isSubStructure(a, b));
     }
 
 }

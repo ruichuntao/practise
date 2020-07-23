@@ -41,7 +41,7 @@ public class Codec {
         StringBuilder sb = new StringBuilder(data);
         sb.deleteCharAt(0);
         sb.deleteCharAt(sb.length() - 1);
-        if(sb.length() == 0) return null;
+        if (sb.length() == 0) return null;
         data = sb.toString();
         String[] s = data.split(",");
         TreeNode ans;
@@ -51,11 +51,11 @@ public class Codec {
         int idx = 0;
         while (idx < s.length - 1) {
             TreeNode cur = queue.poll();
-            if (!s[++idx].equals("null")) {
+            if (idx < s.length - 1 && !s[++idx].equals("null")) {
                 cur.left = new TreeNode(Integer.parseInt(s[idx]));
                 queue.add(cur.left);
             }
-            if (!s[++idx].equals("null")) {
+            if (idx < s.length - 1 && !s[++idx].equals("null")) {
                 cur.right = new TreeNode(Integer.parseInt(s[idx]));
                 queue.add(cur.right);
             }

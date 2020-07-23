@@ -5,11 +5,14 @@ import java.util.Arrays;
 import java.util.List;
 
 public class SegmentTreeNode {
+    // 线段范围
     int start;
     int end;
+    // 线段中元素数
     int count;
-
+    // 线段左孩子
     SegmentTreeNode left;
+    // 线段右孩子
     SegmentTreeNode right;
 
     public SegmentTreeNode() {
@@ -94,7 +97,7 @@ public class SegmentTreeNode {
 
     public static void main(String[] args) {
         SegmentTreeNode n = new SegmentTreeNode();
-        System.out.println(n.countSmaller(new int[]{5, 2, 6, 1}));
+        System.out.println(n.countSmaller(new int[]{-1, -2}));
     }
 
 }
