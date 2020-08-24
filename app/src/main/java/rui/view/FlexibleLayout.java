@@ -8,12 +8,12 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
-import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class FlexRecyclerView extends RecyclerView {
+public class FlexibleLayout extends LinearLayout {
 
     private boolean mIsDragged;
     private float mInitialY, mInitialX;
@@ -22,43 +22,74 @@ public class FlexRecyclerView extends RecyclerView {
     private View mHeaderView;
     private final int animationTime = 300;
 
-    public FlexRecyclerView(@NonNull Context context) {
+    public FlexibleLayout(Context context) {
         this(context, null);
     }
 
-    public FlexRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs) {
+    public FlexibleLayout(Context context, @Nullable AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public FlexRecyclerView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-        super(context, attrs, defStyleAttr);
+    public FlexibleLayout(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        this(context, attrs, defStyleAttr, 0);
+    }
+
+    public FlexibleLayout(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                mHeaderView = getChildAt(0);
+                mHeaderView = ((ViewGroup) getChildAt(0)).getChildAt(0);
                 mHeaderHeight = mHeaderView.getHeight();
                 mHeaderWidth = mHeaderView.getWidth();
             }
         }, 100);
+
+    }
+
+    private PullListener listener;
+
+    public interface PullListener {
+        void pulling();
+    }
+
+    public void setListener(PullListener listener) {
+        this.listener = listener;
+    }
+
+    @Override
+    public boolean onInterceptTouchEvent(MotionEvent ev) {
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                mInitialX = ev.getX();
+                mInitialY = ev.getY();
+                mIsDragged = false;
+                break;
+            case MotionEvent.ACTION_MOVE:
+                float diffY = ev.getY() - mInitialY;
+                float diffX = ev.getX() - mInitialX;
+                if (diffY > 0 && diffY / Math.abs(diffX) > 2 && mHeaderView.isShown()) {
+                    mIsDragged = true;
+                    return true;
+                }
+                break;
+        }
+        return super.onInterceptTouchEvent(ev);
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         switch (ev.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                mInitialY = ev.getY();
-                break;
             case MotionEvent.ACTION_MOVE:
-                float diffY = ev.getY() - mInitialY;
-                if (diffY > 0 && mHeaderView.isAttachedToWindow() && mHeaderView.getTop() == 0) {
+                if (mIsDragged && mHeaderView.isShown()) {
+                    float diffY = ev.getY() - mInitialY;
                     changeHeader(diffY);
                     return true;
                 }
                 break;
             case MotionEvent.ACTION_CANCEL:
             case MotionEvent.ACTION_UP:
-                diffY = ev.getY() - mInitialY;
-                if (diffY > 0 && mHeaderView.isAttachedToWindow() && mHeaderView.getTop() == 0) {
+                if (mIsDragged && mHeaderView.isShown()) {
                     resetHeader();
                     return true;
                 }
@@ -97,7 +128,7 @@ public class FlexRecyclerView extends RecyclerView {
         int pullOffset = (int) Math.pow(offsetY, 0.8);
         int newHeight = pullOffset + mHeaderHeight;
         int newWidth = (int) ((((float) newHeight / mHeaderHeight)) * mHeaderWidth);
-        ViewGroup.LayoutParams params = mHeaderView.getLayoutParams();
+        RecyclerView.LayoutParams params = (RecyclerView.LayoutParams) mHeaderView.getLayoutParams();
         params.height = newHeight;
         params.width = newWidth;
         int margin = (newWidth - mHeaderWidth) / 2;

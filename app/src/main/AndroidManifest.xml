@@ -17,7 +17,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".SceneActivity"></activity>
+        <activity android:name=".PullToZoomActivity"></activity>
+        <activity android:name=".EventDispatchActivity" />
+        <activity android:name=".RadioActivity" />
+        <activity android:name=".SceneActivity" />
         <activity android:name=".CardVIewActivity" />
         <activity android:name=".MazeActivity" />
         <activity android:name=".ConstraintLayoutActivity" />

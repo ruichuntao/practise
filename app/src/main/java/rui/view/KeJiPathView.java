@@ -9,9 +9,10 @@ import android.graphics.Path;
 import android.graphics.PathMeasure;
 import android.os.Handler;
 import android.os.Message;
-import androidx.appcompat.widget.AppCompatImageView;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+
+import androidx.appcompat.widget.AppCompatImageView;
 
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;

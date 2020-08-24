@@ -22,7 +22,6 @@ public class SegNode {
         int mid = (start + end) >>> 1;
         build(left, start, mid);
         build(right, mid + 1, end);
-//        tree[node] = Math.max(tree[left], tree[right]);
         tree[node] = tree[left] + tree[right];
     }
 

@@ -1,10 +1,10 @@
 package rui.todd;
 
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-
-import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
 
 import rui.adapter.AutoVideoAdapter;
 

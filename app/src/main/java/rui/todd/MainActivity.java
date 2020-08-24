@@ -5,47 +5,35 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
-
-import androidx.annotation.NonNull;
-import androidx.core.app.ActivityCompat;
-import androidx.core.app.ActivityOptionsCompat;
-import androidx.core.util.Pair;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
 import java.io.ByteArrayOutputStream;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Locale;
 
-import rui.view.FlexRecyclerView;
+import okhttp3.MediaType;
 
 public class MainActivity extends AppCompatActivity implements DialogPopup.dialogListener {
     private static final String TAG = "MainActivity";
-    private FlexRecyclerView recyclerView;
+    public static final MediaType TYPE_MARKDOWN
+            = MediaType.parse("text/x-markdown;charset=utf-8");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        recyclerView = findViewById(R.id.recycler_view);
-        List<String> list = new ArrayList<>();
-        for (int i = 0; i < (1 << 8); i++) {
-            list.add("第" + i + "个");
-        }
-        FlexRecyclerView.Adapter adapter = new FlexRecyclerView.Adapter(this, list);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        recyclerView.setAdapter(adapter);
-        adapter.notifyDataSetChanged();
+        System.out.println(dp2px(300));
+    }
+
+    private int dp2px(int dpValue) {
+        final float scale = getResources().getDisplayMetrics().density;
+        return (int) (dpValue * scale + 0.5f);
     }
 
 
@@ -191,5 +179,23 @@ public class MainActivity extends AppCompatActivity implements DialogPopup.dialo
 
     public void clicksence(View view) {
         startActivity(new Intent(this, SceneActivity.class));
+    }
+
+    public void radio(View view) {
+        startActivity(new Intent(this, RadioActivity.class));
+    }
+
+
+    public void clickEvent(View view) {
+        startActivity(new Intent(this, EventDispatchActivity.class));
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
+
+    public void clickPull(View view) {
+        startActivity(new Intent(this, PullToZoomActivity.class));
     }
 }

@@ -2,15 +2,15 @@ package rui.todd;
 
 import android.content.Context;
 import android.graphics.PointF;
+import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
+
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import android.os.Bundle;
-
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.LinearSmoothScroller;
 import androidx.recyclerview.widget.RecyclerView;
-import android.util.DisplayMetrics;
-import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;

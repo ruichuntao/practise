@@ -1,5 +1,6 @@
 package rui.designPattern;
 
+
 public class UserManagerImpl implements UserManager {
     @Override
     public void addUser(String userId, String userName) {

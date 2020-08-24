@@ -1,0 +1,307 @@
+Classfile /Users/rui/practise/app/src/main/java/rui/leetcode/Solution.class
+  Last modified 2020年8月24日; size 1026 bytes
+  SHA-256 checksum fb26c29affd4219a03d7add2c6952dd01d7f226b4b9754a769159bd1d69224ad
+  Compiled from "Solution.java"
+public class rui.leetcode.Solution
+  minor version: 0
+  major version: 58
+  flags: (0x0021) ACC_PUBLIC, ACC_SUPER
+  this_class: #8                          // rui/leetcode/Solution
+  super_class: #2                         // java/lang/Object
+  interfaces: 0, fields: 3, methods: 4, attributes: 1
+Constant pool:
+   #1 = Methodref          #2.#3          // java/lang/Object."<init>":()V
+   #2 = Class              #4             // java/lang/Object
+   #3 = NameAndType        #5:#6          // "<init>":()V
+   #4 = Utf8               java/lang/Object
+   #5 = Utf8               <init>
+   #6 = Utf8               ()V
+   #7 = Fieldref           #8.#9          // rui/leetcode/Solution.p:[I
+   #8 = Class              #10            // rui/leetcode/Solution
+   #9 = NameAndType        #11:#12        // p:[I
+  #10 = Utf8               rui/leetcode/Solution
+  #11 = Utf8               p
+  #12 = Utf8               [I
+  #13 = Fieldref           #8.#14         // rui/leetcode/Solution.size:[I
+  #14 = NameAndType        #15:#12        // size:[I
+  #15 = Utf8               size
+  #16 = Fieldref           #8.#17         // rui/leetcode/Solution.cnt:[I
+  #17 = NameAndType        #18:#12        // cnt:[I
+  #18 = Utf8               cnt
+  #19 = Methodref          #8.#20         // rui/leetcode/Solution.find:(I)I
+  #20 = NameAndType        #21:#22        // find:(I)I
+  #21 = Utf8               find
+  #22 = Utf8               (I)I
+  #23 = Methodref          #8.#3          // rui/leetcode/Solution."<init>":()V
+  #24 = Fieldref           #25.#26        // java/lang/System.out:Ljava/io/PrintStream;
+  #25 = Class              #27            // java/lang/System
+  #26 = NameAndType        #28:#29        // out:Ljava/io/PrintStream;
+  #27 = Utf8               java/lang/System
+  #28 = Utf8               out
+  #29 = Utf8               Ljava/io/PrintStream;
+  #30 = String             #31            // b
+  #31 = Utf8               b
+  #32 = Methodref          #33.#34        // java/io/PrintStream.println:(Ljava/lang/String;)V
+  #33 = Class              #35            // java/io/PrintStream
+  #34 = NameAndType        #36:#37        // println:(Ljava/lang/String;)V
+  #35 = Utf8               java/io/PrintStream
+  #36 = Utf8               println
+  #37 = Utf8               (Ljava/lang/String;)V
+  #38 = Utf8               Code
+  #39 = Utf8               LineNumberTable
+  #40 = Utf8               StackMapTable
+  #41 = Utf8               findLatestStep
+  #42 = Utf8               ([II)I
+  #43 = Utf8               main
+  #44 = Utf8               ([Ljava/lang/String;)V
+  #45 = Utf8               SourceFile
+  #46 = Utf8               Solution.java
+{
+  int[] p;
+    descriptor: [I
+    flags: (0x0000)
+
+  int[] size;
+    descriptor: [I
+    flags: (0x0000)
+
+  int[] cnt;
+    descriptor: [I
+    flags: (0x0000)
+
+  public rui.leetcode.Solution();
+    descriptor: ()V
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=1, locals=1, args_size=1
+         0: aload_0
+         1: invokespecial #1                  // Method java/lang/Object."<init>":()V
+         4: return
+      LineNumberTable:
+        line 3: 0
+
+  int find(int);
+    descriptor: (I)I
+    flags: (0x0000)
+    Code:
+      stack=5, locals=2, args_size=2
+         0: iload_1
+         1: aload_0
+         2: getfield      #7                  // Field p:[I
+         5: iload_1
+         6: iaload
+         7: if_icmpeq     37
+        10: aload_0
+        11: getfield      #7                  // Field p:[I
+        14: iload_1
+        15: aload_0
+        16: getfield      #7                  // Field p:[I
+        19: aload_0
+        20: getfield      #7                  // Field p:[I
+        23: iload_1
+        24: iaload
+        25: iaload
+        26: iastore
+        27: aload_0
+        28: getfield      #7                  // Field p:[I
+        31: iload_1
+        32: iaload
+        33: istore_1
+        34: goto          0
+        37: iload_1
+        38: ireturn
+      LineNumberTable:
+        line 171: 0
+        line 172: 10
+        line 173: 27
+        line 175: 37
+      StackMapTable: number_of_entries = 2
+        frame_type = 0 /* same */
+        frame_type = 36 /* same */
+
+  public int findLatestStep(int[], int);
+    descriptor: ([II)I
+    flags: (0x0001) ACC_PUBLIC
+    Code:
+      stack=5, locals=8, args_size=3
+         0: aload_1
+         1: arraylength
+         2: istore_3
+         3: aload_0
+         4: iload_3
+         5: iconst_5
+         6: iadd
+         7: newarray       int
+         9: putfield      #7                  // Field p:[I
+        12: aload_0
+        13: iload_3
+        14: iconst_5
+        15: iadd
+        16: newarray       int
+        18: putfield      #13                 // Field size:[I
+        21: aload_0
+        22: iload_3
+        23: iconst_5
+        24: iadd
+        25: newarray       int
+        27: putfield      #16                 // Field cnt:[I
+        30: aload_0
+        31: getfield      #16                 // Field cnt:[I
+        34: iconst_0
+        35: iload_3
+        36: iastore
+        37: iconst_1
+        38: istore        4
+        40: iload         4
+        42: iload_3
+        43: iconst_1
+        44: iadd
+        45: if_icmpgt     63
+        48: aload_0
+        49: getfield      #7                  // Field p:[I
+        52: iload         4
+        54: iload         4
+        56: iastore
+        57: iinc          4, 1
+        60: goto          40
+        63: iconst_m1
+        64: istore        4
+        66: iconst_0
+        67: istore        5
+        69: iload         5
+        71: iload_3
+        72: if_icmpge     196
+        75: aload_1
+        76: iload         5
+        78: iaload
+        79: istore        6
+        81: aload_0
+        82: getfield      #7                  // Field p:[I
+        85: iload         6
+        87: iload         6
+        89: iconst_1
+        90: iadd
+        91: iastore
+        92: aload_0
+        93: iload         6
+        95: invokevirtual #19                 // Method find:(I)I
+        98: istore        7
+       100: aload_0
+       101: getfield      #16                 // Field cnt:[I
+       104: aload_0
+       105: getfield      #13                 // Field size:[I
+       108: iload         6
+       110: iaload
+       111: dup2
+       112: iaload
+       113: iconst_1
+       114: isub
+       115: iastore
+       116: aload_0
+       117: getfield      #16                 // Field cnt:[I
+       120: aload_0
+       121: getfield      #13                 // Field size:[I
+       124: iload         7
+       126: iaload
+       127: dup2
+       128: iaload
+       129: iconst_1
+       130: isub
+       131: iastore
+       132: aload_0
+       133: getfield      #13                 // Field size:[I
+       136: iload         7
+       138: dup2
+       139: iaload
+       140: aload_0
+       141: getfield      #13                 // Field size:[I
+       144: iload         6
+       146: iaload
+       147: iconst_1
+       148: iadd
+       149: iadd
+       150: iastore
+       151: aload_0
+       152: getfield      #13                 // Field size:[I
+       155: iload         6
+       157: iconst_0
+       158: iastore
+       159: aload_0
+       160: getfield      #16                 // Field cnt:[I
+       163: aload_0
+       164: getfield      #13                 // Field size:[I
+       167: iload         7
+       169: iaload
+       170: dup2
+       171: iaload
+       172: iconst_1
+       173: iadd
+       174: iastore
+       175: aload_0
+       176: getfield      #16                 // Field cnt:[I
+       179: iload_2
+       180: iaload
+       181: ifle          190
+       184: iload         5
+       186: iconst_1
+       187: iadd
+       188: istore        4
+       190: iinc          5, 1
+       193: goto          69
+       196: iload         4
+       198: ireturn
+      LineNumberTable:
+        line 182: 0
+        line 183: 3
+        line 184: 12
+        line 185: 21
+        line 186: 30
+        line 187: 37
+        line 188: 48
+        line 187: 57
+        line 190: 63
+        line 191: 66
+        line 192: 75
+        line 193: 81
+        line 194: 92
+        line 195: 100
+        line 196: 116
+        line 197: 132
+        line 198: 151
+        line 199: 159
+        line 200: 175
+        line 191: 190
+        line 202: 196
+      StackMapTable: number_of_entries = 5
+        frame_type = 253 /* append */
+          offset_delta = 40
+          locals = [ int, int ]
+        frame_type = 250 /* chop */
+          offset_delta = 22
+        frame_type = 253 /* append */
+          offset_delta = 5
+          locals = [ int, int ]
+        frame_type = 251 /* same_frame_extended */
+          offset_delta = 120
+        frame_type = 250 /* chop */
+          offset_delta = 5
+
+  public static void main(String[]);
+    descriptor: ([Ljava/lang/String;)V
+    flags: (0x0009) ACC_PUBLIC, ACC_STATIC
+    Code:
+      stack=2, locals=2, args_size=1
+         0: new           #8                  // class rui/leetcode/Solution
+         3: dup
+         4: invokespecial #23                 // Method "<init>":()V
+         7: astore_1
+         8: getstatic     #24                 // Field java/lang/System.out:Ljava/io/PrintStream;
+        11: ldc           #30                 // String b
+        13: invokevirtual #32                 // Method java/io/PrintStream.println:(Ljava/lang/String;)V
+        16: return
+      LineNumberTable:
+        line 207: 0
+        line 210: 8
+        line 211: 16
+}
+SourceFile: "Solution.java"

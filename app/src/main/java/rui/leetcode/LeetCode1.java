@@ -4221,6 +4221,7 @@ public class LeetCode1 {
                 {0},
                 {0}
         };
+        out.println(Arrays.toString(t.quickSort(0, 1, new int[]{2, 1}, 0)));
 
 //        int[][] grid = new int[][]{};
 //        out.println(t.reversePairs(nums2));

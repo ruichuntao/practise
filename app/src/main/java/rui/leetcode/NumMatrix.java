@@ -1,7 +1,5 @@
 package rui.leetcode;
 
-import java.util.Arrays;
-
 public class NumMatrix {
 
     int[][] dp;

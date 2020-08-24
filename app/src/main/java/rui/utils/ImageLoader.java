@@ -1,6 +1,5 @@
 package rui.utils;
 
-import android.app.Application;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;

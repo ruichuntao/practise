@@ -1,5 +1,6 @@
 package rui.designPattern;
 
+
 public interface UserManager {
     void addUser(String userId, String userName);
 

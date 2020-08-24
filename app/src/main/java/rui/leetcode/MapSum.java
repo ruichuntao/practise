@@ -1,7 +1,6 @@
 package rui.leetcode;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class MapSum {
     int sum = 0;

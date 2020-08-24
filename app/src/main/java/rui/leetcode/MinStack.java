@@ -1,6 +1,5 @@
 package rui.leetcode;
 
-import java.util.LinkedHashMap;
 import java.util.Stack;
 
 public class MinStack {
