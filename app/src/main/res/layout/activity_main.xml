@@ -279,6 +279,7 @@
             android:onClick="clickEvent"
             android:text="事件分发"
             android:textSize="30sp" />
+
         <TextView
             android:id="@+id/pullToBig"
             android:layout_width="match_parent"
@@ -287,5 +288,21 @@
             android:onClick="clickPull"
             android:text="下拉放大"
             android:textSize="30sp" />
+
+        <TextView
+            android:id="@+id/downAndSave"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:onClick="clickDown"
+            android:text="网络下载"
+            android:textSize="30sp" />
+
+        <TextView
+            android:text="无限大 * ♾️"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
     </LinearLayout>
 </ScrollView>

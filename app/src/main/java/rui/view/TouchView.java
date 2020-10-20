@@ -1,18 +1,27 @@
 package rui.view;
 
+import android.animation.Animator;
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
+import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Scroller;
 
 import androidx.annotation.Nullable;
+
+import rui.todd.BaseActivity;
 
 
 public class TouchView extends LinearLayout {
 
     private Scroller scroller;
+    private boolean isLeft;
 
     public TouchView(Context context) {
         this(context, null);
@@ -25,7 +34,6 @@ public class TouchView extends LinearLayout {
     public TouchView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         scroller = new Scroller(context);
-//        smoothScrollTo(-400, -400);
     }
 
     int lastX, lastY;
@@ -54,39 +62,67 @@ public class TouchView extends LinearLayout {
             case MotionEvent.ACTION_MOVE:
                 offsetX = x - lastX;
                 offsetY = y - lastY;
-//                Log.e(TAG, "onTouchEvent: left" + getLeft() + offsetX);
-//                Log.e(TAG, "onTouchEvent: right" + getRight() + offsetX);
-//                Log.e(TAG, "onTouchEvent: top" + getTop() + offsetY);
-//                Log.e(TAG, "onTouchEvent: bottom" + getBottom() + offsetY);
-//                layout(getLeft() + offsetX, getTop() + offsetY,
-//                        getRight() + offsetX, getBottom() + offsetY);
                 offsetLeftAndRight(offsetX);
                 offsetTopAndBottom(offsetY);
-//                LinearLayout.LayoutParams params = (LayoutParams) getLayoutParams();
-//                params.leftMargin = getLeft() + offsetX;
-//                params.topMargin = getTop() + offsetY;
-//                Log.e(TAG, "onTouchEvent:  params.topMargin = " + params.topMargin);
-//                setLayoutParams(params);
-//                ((LinearLayout) getParent()).scrollBy(-offsetX, -offsetY);
-
                 break;
             case MotionEvent.ACTION_UP:
-//                int left = 0, right = 0;
-//                int fw = ((LinearLayout) getParent()).getWidth();
-//                int fh = ((LinearLayout) getParent()).getHeight();
-//                if ((getLeft() + getWidth() / 2) * 2 > fw) {
-//                    right = fw;
-//                    left = fw - getWidth();
-//                } else {
-//                    right = getWidth();
-//                    left = 0;
-//                }
-//                layout(left, getTop() + offsetY,
-//                        right, getBottom() + offsetY);
-//                Log.e(TAG, "onTouchEvent: getLeft" + getLeft());
-//                smoothScrollTo(getLeft(), 0);
+                int left = 0, right = 0;
+                int fw = ((FrameLayout) getParent()).getWidth();
+                int fh = ((FrameLayout) getParent()).getHeight();
+                if ((getLeft() + getWidth() / 2) * 2 > fw) {
+                    isLeft = false;
+                    right = fw;
+                    left = fw - getWidth();
+                } else {
+                    isLeft = true;
+                    right = getWidth();
+                    left = 0;
+                }
+                BaseActivity.marginTop = getTop() + offsetY;
+                BaseActivity.marginLeft = left;
+//                animateStart(left, right);
                 break;
         }
         return true;
+    }
+
+    @Override
+    protected void onLayout(boolean changed, int l, int t, int r, int b) {
+        super.onLayout(changed, l, t, r, b);
+        offsetLeftAndRight(BaseActivity.marginLeft);
+        offsetTopAndBottom(BaseActivity.marginTop);
+    }
+
+    private void animateStart(int left, int right) {
+        int curLeft = getLeft();
+        int curRight = getRight();
+        ObjectAnimator animator1 = ObjectAnimator.ofInt(this, "left", curLeft, left);
+        ObjectAnimator animator2 = ObjectAnimator.ofInt(this, "right", curRight, right);
+        AnimatorSet set = new AnimatorSet();
+        set.playTogether(animator1, animator2);
+        set.setDuration(300);
+        set.start();
+        set.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                setX(BaseActivity.marginLeft);
+                setY(BaseActivity.marginTop);
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
     }
 }

@@ -5,37 +5,38 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
+import android.util.SparseArray;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Locale;
+import java.util.Scanner;
 
-import okhttp3.MediaType;
-
-public class MainActivity extends AppCompatActivity implements DialogPopup.dialogListener {
+public class MainActivity extends BaseActivity implements DialogPopup.dialogListener {
     private static final String TAG = "MainActivity";
-    public static final MediaType TYPE_MARKDOWN
-            = MediaType.parse("text/x-markdown;charset=utf-8");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        System.out.println(dp2px(300));
     }
 
-    private int dp2px(int dpValue) {
-        final float scale = getResources().getDisplayMetrics().density;
-        return (int) (dpValue * scale + 0.5f);
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        return super.dispatchTouchEvent(ev);
     }
-
 
     public void clickbubble(View view) {
         startActivity(new Intent(this, BuddleActivity.class));
@@ -196,6 +197,13 @@ public class MainActivity extends AppCompatActivity implements DialogPopup.dialo
     }
 
     public void clickPull(View view) {
-        startActivity(new Intent(this, PullToZoomActivity.class));
+        Intent intent = new Intent(this, PullToZoomActivity.class);
+        startActivity(intent);
+    }
+
+
+    public void clickDown(View view) {
+        Scanner scanner = new Scanner(System.in);
+        startActivity(new Intent(this, DownloadActivity.class));
     }
 }

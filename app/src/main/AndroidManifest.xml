@@ -7,6 +7,7 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
         android:name=".ToddApplication"
@@ -17,7 +18,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".PullToZoomActivity"></activity>
+        <activity android:name=".BaseActivity"></activity>
+
+        <service
+            android:name="rui.service.MusicService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <activity android:name=".DownloadActivity" />
+        <activity android:name=".PullToZoomActivity" />
         <activity android:name=".EventDispatchActivity" />
         <activity android:name=".RadioActivity" />
         <activity android:name=".SceneActivity" />

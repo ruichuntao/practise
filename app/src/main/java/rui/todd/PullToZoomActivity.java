@@ -19,7 +19,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import rui.view.FlexRecyclerView;
 
-public class PullToZoomActivity extends AppCompatActivity {
+public class PullToZoomActivity extends BaseActivity {
     @BindView(R.id.recyclerView)
     FlexRecyclerView recyclerView;
 

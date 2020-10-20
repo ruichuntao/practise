@@ -1,11 +1,15 @@
 package rui.leetcode
 
+import java.lang.Exception
 import java.util.*
 import kotlin.math.min
 
 class LeetCodeKotlin {
 
     private val dicts = arrayOf(intArrayOf(-1, 0), intArrayOf(1, 0), intArrayOf(0, -1), intArrayOf(0, 1))
+    val i: Int by lazy {
+        1
+    }
     var queue: Queue<IntArray> = LinkedList()
 
 
@@ -133,7 +137,7 @@ class LeetCodeKotlin {
         val m = grid.size
         if (m == 0) return 0
         val n = grid[0].size
-        val queue : Queue<IntArray> = ArrayDeque()
+        val queue: Queue<IntArray> = ArrayDeque()
         for (i in 0 until m) {
             for (j in 0 until n) {
                 if (grid[i][j] == '1') {
@@ -159,19 +163,19 @@ class LeetCodeKotlin {
         return ans
     }
 
-    fun compare (a : String, b : String) : Boolean {
+    fun compare(a: String, b: String): Boolean {
         return a > b
     }
 
     fun longestDiverseString(a: Int, b: Int, c: Int): String {
         val ans = StringBuilder()
-        val num = intArrayOf(a,b,c)
-        val sequence = intArrayOf(0,0,0)
+        val num = intArrayOf(a, b, c)
+        val sequence = intArrayOf(0, 0, 0)
         while (true) {
             var choice = -1
             var max = 0
-            for (i in 0.. 2){
-                if (sequence[i] < 2 && num[i] > max){
+            for (i in 0..2) {
+                if (sequence[i] < 2 && num[i] > max) {
                     max = num[i]
                     choice = i
                 }
@@ -183,7 +187,7 @@ class LeetCodeKotlin {
             for (i in 0..2) {
                 if (i == choice) {
                     sequence[i]++
-                } else{
+                } else {
                     sequence[i] = 0
                 }
             }
@@ -192,10 +196,10 @@ class LeetCodeKotlin {
 
     fun firstUniqChar(s: String): Char {
         val m = s.length
-        if(m == 0) return ' '
+        if (m == 0) return ' '
         val map = IntArray(128)
         val c = s.toCharArray()
-        for (ch in c){
+        for (ch in c) {
             map[ch.toInt()]++
         }
         var ans = ' '
@@ -209,25 +213,12 @@ class LeetCodeKotlin {
     companion object {
         @JvmStatic
         fun main(args: Array<String>) {
-            val k = LeetCodeKotlin()
-            val array = arrayOf(
-                    charArrayOf('X', '.', '.', 'X'),
-                    charArrayOf('.', '.', '.', 'X'),
-                    charArrayOf('.', '.', '.', 'X')
-            )
-            val matrix = arrayOf(
-                    intArrayOf(0, 0, 0),
-                    intArrayOf(0, 1, 0),
-                    intArrayOf(1, 1, 1)
-            )
-            val s = IntArray(3)
-            val aa = arrayOfNulls<Int>(3)
-            for (i in s) {
-                println(i.javaClass)
-            }
-            for (i in aa) {
-                println(i?.javaClass)
-            }
+            val list = listOf("a", "b", "c")
+            val map = mapOf(1 to 1, 2 to 2, 3 to 3)
+            for ((k, v) in map) println("$k + $v")
+            println(list[0])
+            println(list[1])
+            println(list[2])
         }
 
     }

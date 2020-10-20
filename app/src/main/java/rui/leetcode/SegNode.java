@@ -68,7 +68,6 @@ public class SegNode {
             int mid = (start + end) >>> 1;
             int left = node * 2 + 1;
             int right = node * 2 + 2;
-//            return Math.max(query(L, R, left, start, mid), query(L, R, right, mid + 1, end));
             return query(L, R, left, start, mid) + query(L, R, right, mid + 1, end);
         }
     }

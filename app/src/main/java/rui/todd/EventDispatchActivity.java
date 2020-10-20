@@ -13,7 +13,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import rui.bean.Box;
 
-public class EventDispatchActivity extends AppCompatActivity {
+public class EventDispatchActivity extends BaseActivity {
 
     @BindView(R.id.lv_one)
     ListView lv_one;
@@ -35,12 +35,4 @@ public class EventDispatchActivity extends AppCompatActivity {
         lv_two.setAdapter(adapter2);
     }
 
-    public void clickPostEvent(View view) {
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                EventBus.getDefault().post(new Box());
-            }
-        });
-    }
 }

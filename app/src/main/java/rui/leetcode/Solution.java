@@ -1,9 +1,11 @@
 package rui.leetcode;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
 public class Solution {
+
 
     //    long[][] dp;
 //    long mod = (long) 1e9 + 7;
@@ -205,35 +207,100 @@ public class Solution {
         return ans;
     }
 
+    public int backPackV(int[] nums, int target) {
+        // write your code here
+        int n = nums.length;
+        int[] dp = new int[target + 1];
+        dp[0] = 0;
+        int ans = 0;
+//        for (int i = 1; i <= n; i++) {
+//            for (int j = target; j >= nums[i - 1]; j--) {
+//                dp[j] = Math.max(dp[j], dp[j - nums[i - 1]] + nums[i - 1]);
+//            }
+//        }
+//        for (int i = 1; i <= n; i++) {
+//            for (int j = nums[i - 1]; j <= target; j++) {
+//                dp[j] = Math.max(dp[j], dp[j - nums[i - 1]] + nums[i - 1]);
+//            }
+//        }
+        System.out.println(Arrays.toString(dp));
+        return dp[target];
+    }
+
+    public int woodCut(int[] L, int k) {
+        // write your code here
+        int n = L.length;
+        int max = 0;
+        for (int ll : L) if (ll > max) max = ll;
+        int l = 0;
+        int r = max;
+        while (l < r) {
+            int m = (l + r) >>> 1;
+            int x = getX(L, n, m);
+            if (x < k) {
+                r = m;
+            } else {
+                l = m + 1;
+            }
+        }
+        if (getX(L, n, l) == k)
+            return l;
+        return l - 1;
+    }
+
+    private int getX(int[] L, int n, int m) {
+        int x = 0;
+        for (int i = 0; i < n; i++) {
+            if (L[i] >= m) {
+                x += L[i] / m;
+            }
+        }
+        return x;
+    }
+
+    boolean check(int m) {
+        int x = 1;
+        int sum = 0;
+        for (int i = 0; i < n; i++) {
+            if (sum + nums[i] <= m) {
+                sum += nums[i];
+            } else {
+                sum = nums[i];
+                x++;
+            }
+        }
+        return x >= t;
+    }
+
+
+    int t;
+    int[] nums;
+    int n;
+
+    public int splitArray(int[] nums, int t) {
+        // write your code here
+        this.nums = nums;
+        this.t = t;
+        n = nums.length;
+        int r = 1 << 20;
+        int l = 0;
+        while (l < r) {
+            int m = (l + r) >>> 1;
+            if (check(m)) {
+                l = m + 1;
+            } else {
+                r = m;
+            }
+        }
+        if (check(l)) return l;
+        return l - 1;
+    }
+
     public static void main(String[] args) {
         Solution s = new Solution();
 //        char[][] c = new char[][]{{'a', 'a', 'a', 'a'}, {'a', 'b', 'b', 'a'}, {'a', 'b', 'b', 'a'}, {'a', 'a', 'a', 'a'}};
 //        System.out.println(s.findLatestStep(new int[]{3, 5, 1, 2, 4}, 1));
-        System.out.println("b");
-    }
-}
-
-class A {
-    public int subarraysDivByK(int[] A, int K) {
-        int sum = 0;
-        int ans = 0;
-        Map<Integer, Integer> map = new HashMap<>();
-        map.put(0, 1);
-        for (int i : A) {
-            i = i % K + K;
-            sum += i;
-            sum %= K;
-            if (map.containsKey(sum)) {
-                ans += map.get(sum);
-            }
-            map.put(sum, map.getOrDefault(sum, 0) + 1);
-        }
-        return ans;
-    }
-
-    public static void main(String[] args) {
-        A a = new A();
-        System.out.println(a.subarraysDivByK(new int[]{4, 5, 0, -2, -3, 1}, 5));
+        System.out.println(s.splitArray(new int[]{7,2,5,10,8}, 2));
     }
 }
 
