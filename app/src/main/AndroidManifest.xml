@@ -18,7 +18,16 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".BaseActivity"></activity>
+        <activity android:name=".FragmentActivity"></activity>
+        <activity
+            android:name=".CircularRevealActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_circular_reveal"
+            android:theme="@style/FullscreenTheme" />
+        <activity
+            android:name=".WebViewActivity"
+            android:screenOrientation="portrait" />
+        <activity android:name=".BaseActivity" />
 
         <service
             android:name="rui.service.MusicService"
@@ -29,7 +38,8 @@
         <activity android:name=".PullToZoomActivity" />
         <activity android:name=".EventDispatchActivity" />
         <activity android:name=".RadioActivity" />
-        <activity android:name=".SceneActivity" />
+        <activity android:name=".SceneActivity"
+            android:screenOrientation="landscape"/>
         <activity android:name=".CardVIewActivity" />
         <activity android:name=".MazeActivity" />
         <activity android:name=".ConstraintLayoutActivity" />
@@ -63,7 +73,7 @@
         <activity android:name=".LoveAnimActivity" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="portrait">
+            android:screenOrientation="landscape">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

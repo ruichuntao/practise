@@ -1,18 +1,16 @@
 package rui.kotlin
 
-import java.util.*
+import kotlinx.coroutines.*
+import kotlin.system.*
 
 class KotlinTest {
 
-    companion object {
-
-        const val x = 1;
-
-        @JvmStatic
-        fun main(args: Array<String>) {
-            println(a)
-        }
-    }
 }
 
-val a = 1
+suspend fun main() = coroutineScope  {
+    launch { // 启动一个新协程并保持对这个作业的引用
+        delay(1000L)
+        println("World!")
+    }
+    println("Hello,")
+}

@@ -1,9 +1,14 @@
 package rui.todd;
 
+import android.content.BroadcastReceiver;
+import android.content.ContentProvider;
 import android.os.Handler;
 import android.os.Message;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import android.os.Bundle;
+
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -27,7 +32,7 @@ public class MazeActivity extends AppCompatActivity {
     private int n;
     private List<Integer> order = new ArrayList<>();
     private Timer timer = new Timer();
-    int[][] dict = new int[][]{{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+    int[][] dict = new int[][]{{0, 1}, {1, 0}, {0, -1}, {-1, 0}};
 
     private boolean isIn(int i, int j) {
         return i >= 0 && i < m && j >= 0 && j < n;
@@ -69,8 +74,8 @@ public class MazeActivity extends AppCompatActivity {
             MazeBean bean = new MazeBean();
             list.add(bean);
         }
-        dfs(5, 5);
-//        bfs(5, 5);
+//        dfs(5, 5);
+        bfs(5, 5);
         TimerTask task = new TimerTask() {
             @Override
             public void run() {

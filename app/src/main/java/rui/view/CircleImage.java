@@ -69,10 +69,10 @@ public class CircleImage extends androidx.appcompat.widget.AppCompatImageView {
         if (getDrawable() == null) {
             return;
         }
-        setUpShader();
-        canvas.drawRoundRect(mRoundRect, mBorderRadius, mBorderRadius,
+//        setUpShader();
+        canvas.drawRoundRect(mRoundRect, 0, 0,
                 mBitmapPaint);
-        canvas.drawCircle(mWidth / 2, mWidth / 2, mWidth / 2 - 10, mBorderPaint);
+//        canvas.drawCircle(mWidth / 2, mWidth / 2, mWidth / 2 - 10, mBorderPaint);
     }
 
     @Override
@@ -124,5 +124,9 @@ public class CircleImage extends androidx.appcompat.widget.AppCompatImageView {
         mWidth = Math.min(getMeasuredWidth(), getMeasuredHeight());
         mRadius = mWidth / 2;
         setMeasuredDimension(mWidth, mWidth);
+    }
+
+    public interface CallBack {
+        void one();
     }
 }

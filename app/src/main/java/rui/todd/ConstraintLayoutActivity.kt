@@ -2,6 +2,10 @@ package rui.todd
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ListView
+import rui.view.CircleImage
 
 class ConstraintLayoutActivity : AppCompatActivity() {
 
@@ -10,3 +14,4 @@ class ConstraintLayoutActivity : AppCompatActivity() {
         setContentView(R.layout.activity_constraint_layout)
     }
 }
+

@@ -1,36 +1,99 @@
 package rui.todd;
 
+import android.animation.LayoutTransition;
+import android.app.ActionBar;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.text.Html;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.util.SparseArray;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.Adapter;
+import android.widget.BaseAdapter;
+import android.widget.EditText;
+import android.widget.FrameLayout;
+import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AlertDialog;
+import androidx.lifecycle.Observer;
 import androidx.viewpager.widget.ViewPager;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Locale;
 import java.util.Scanner;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import rui.dialog.ExpEvaluatedDialog;
+import rui.dialog.ExpEvaluationDialog;
+import rui.proxy.HookManager;
+import rui.viewmodel.UserModel;
+
+import static androidx.core.text.HtmlCompat.FROM_HTML_MODE_LEGACY;
+
 public class MainActivity extends BaseActivity implements DialogPopup.dialogListener {
     private static final String TAG = "MainActivity";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        Log.e(TAG, "onStart: ");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        Log.e(TAG, "onRestart: ");
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        Log.e(TAG, "onResume: ");
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        Log.e(TAG, "onPause: ");
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        Log.e(TAG, "onStop: ");
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        Log.e(TAG, "onDestroy: ");
     }
 
     @Override
@@ -178,7 +241,7 @@ public class MainActivity extends BaseActivity implements DialogPopup.dialogList
     }
 
 
-    public void clicksence(View view) {
+    public void clickScene(View view) {
         startActivity(new Intent(this, SceneActivity.class));
     }
 
@@ -191,11 +254,6 @@ public class MainActivity extends BaseActivity implements DialogPopup.dialogList
         startActivity(new Intent(this, EventDispatchActivity.class));
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-
     public void clickPull(View view) {
         Intent intent = new Intent(this, PullToZoomActivity.class);
         startActivity(intent);
@@ -203,7 +261,23 @@ public class MainActivity extends BaseActivity implements DialogPopup.dialogList
 
 
     public void clickDown(View view) {
-        Scanner scanner = new Scanner(System.in);
         startActivity(new Intent(this, DownloadActivity.class));
+    }
+
+    public void clickWebView(View view) {
+        startActivity(new Intent(this, WebViewActivity.class));
+    }
+
+    public void clickCircularReveal(View view) {
+        startActivity(new Intent(this, CircularRevealActivity.class));
+    }
+
+    public void clickFragment(View view) {
+        startActivity(new Intent(this, FragmentActivity.class));
+    }
+
+    public void clickInterestingOpenCloseAni(View view) {
+        ExpEvaluationDialog dialog = new ExpEvaluationDialog();
+        dialog.show(getSupportFragmentManager(), "ttt");
     }
 }

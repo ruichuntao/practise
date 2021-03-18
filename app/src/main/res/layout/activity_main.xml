@@ -26,6 +26,7 @@
                 android:textSize="30sp" />
 
             <TextView
+                android:id="@+id/t123"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
@@ -200,7 +201,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
                 android:onClick="clickCirle"
-                android:text="圆角"
+                android:text="自定义view"
                 android:textSize="30sp" />
 
             <TextView
@@ -236,73 +237,116 @@
                 android:textSize="30sp" />
         </LinearLayout>
 
-        <TextView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:onClick="clickAlgorithm"
-            android:text="algorithm动画"
-            android:textSize="30sp" />
+            android:orientation="vertical"
+            android:visibility="visible">
 
-        <TextView
-            android:id="@+id/card"
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:onClick="clickAlgorithm"
+                android:text="algorithm动画"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:text="card动画"
+                android:textSize="30sp"
+                android:transitionName="card" />
+
+            <TextView
+                android:id="@+id/scene动画"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:onClick="clicksence"
+                android:text="scene动画"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/radioButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:onClick="radio"
+                android:text="滑动"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/eventDispatch"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:onClick="clickEvent"
+                android:text="事件分发"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/pullToBig"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:onClick="clickPull"
+                android:text="下拉放大"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/downAndSave"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:onClick="clickDown"
+                android:text="网络下载"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/webTest"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:onClick="clickWebView"
+                android:text="键盘覆盖"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/CircularReveal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:onClick="clickCircularReveal"
+                android:text="揭露动画"
+                android:textSize="30sp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:onClick="clickFragment"
+                android:text="Fragment实验"
+                android:textSize="30sp" />
+
+        </LinearLayout>
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:text="card动画"
-            android:textSize="30sp"
-            android:transitionName="card" />
+            android:layout_height="wrap_content">
 
-        <TextView
-            android:id="@+id/scene动画"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:onClick="clicksence"
-            android:text="scene动画"
-            android:textSize="30sp" />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:onClick="clickInterestingOpenCloseAni"
+                android:text="展开动画"
+                android:textSize="30sp" />
+        </LinearLayout>
 
-        <TextView
-            android:id="@+id/radioButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:onClick="radio"
-            android:text="滑动"
-            android:textSize="30sp" />
-
-        <TextView
-            android:id="@+id/eventDispatch"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:onClick="clickEvent"
-            android:text="事件分发"
-            android:textSize="30sp" />
-
-        <TextView
-            android:id="@+id/pullToBig"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:onClick="clickPull"
-            android:text="下拉放大"
-            android:textSize="30sp" />
-
-        <TextView
-            android:id="@+id/downAndSave"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            android:onClick="clickDown"
-            android:text="网络下载"
-            android:textSize="30sp" />
-
-        <TextView
-            android:text="无限大 * ♾️"
-            android:gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
 
     </LinearLayout>
+
 </ScrollView>

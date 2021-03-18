@@ -35,6 +35,7 @@ public class BaseActivity extends AppCompatActivity {
         if (floatView == null) {
             floatView = LayoutInflater.from(this).inflate(R.layout.floating_window_layout, null);
         }
+        floatView.setVisibility(View.GONE);
         play = floatView.findViewById(R.id.play);
         close = floatView.findViewById(R.id.close);
         close.setOnClickListener(v -> {
