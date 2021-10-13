@@ -13,6 +13,10 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Hashtable;
+
 public class CornerPathEffectTestView extends View {
     Paint mPaint = new Paint();
     PathEffect mPathEffect = new CornerPathEffect(200);

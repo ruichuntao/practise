@@ -17,8 +17,28 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".FragmentActivity"></activity>
+        <service
+            android:name="rui.service.MyService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":aaa" />
+
+        <activity
+            android:name=".SurfaceMediaActivity"
+            android:screenOrientation="fullSensor"
+            android:theme="@style/Theme.MaterialComponents.NoActionBar" />
+        <activity
+            android:name=".RateControlActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ShareActivity"
+            android:screenOrientation="landscape" />
+        <activity
+            android:name=".ShareActivity2"
+            android:screenOrientation="landscape" />
+        <activity android:name=".FragmentActivity" />
         <activity
             android:name=".CircularRevealActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
@@ -38,8 +58,9 @@
         <activity android:name=".PullToZoomActivity" />
         <activity android:name=".EventDispatchActivity" />
         <activity android:name=".RadioActivity" />
-        <activity android:name=".SceneActivity"
-            android:screenOrientation="landscape"/>
+        <activity
+            android:name=".SceneActivity"
+            android:screenOrientation="landscape" />
         <activity android:name=".CardVIewActivity" />
         <activity android:name=".MazeActivity" />
         <activity android:name=".ConstraintLayoutActivity" />
@@ -73,7 +94,7 @@
         <activity android:name=".LoveAnimActivity" />
         <activity
             android:name=".MainActivity"
-            android:screenOrientation="landscape">
+            android:screenOrientation="fullSensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

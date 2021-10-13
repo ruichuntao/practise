@@ -13,7 +13,11 @@ import android.graphics.RectF;
 import android.graphics.Shader;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
+import android.os.Handler;
+import android.os.Message;
 import android.util.AttributeSet;
+
+import androidx.annotation.NonNull;
 
 import rui.todd.R;
 
@@ -35,6 +39,12 @@ public class CircleImage extends androidx.appcompat.widget.AppCompatImageView {
     private BitmapShader mBitmapShader;
     private Matrix mMatrix;
     private Paint mBorderPaint;
+    private Handler handler = new Handler(new Handler.Callback() {
+        @Override
+        public boolean handleMessage(@NonNull Message msg) {
+            return false;
+        }
+    });
 
     public CircleImage(Context context) {
         this(context, null);

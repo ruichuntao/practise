@@ -1,8 +1,13 @@
 package rui.leetcode;
 
+import java.util.ArrayDeque;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.Deque;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.PriorityQueue;
+import java.util.TreeSet;
 
 public class Solution {
 
@@ -296,11 +301,115 @@ public class Solution {
         return l - 1;
     }
 
+    public String replaceDigits(String s) {
+        char[] c = s.toCharArray();
+        int n = c.length;
+        for (int i = 1; i < n; i += 2) {
+            c[i] = (char) (c[i - 1] + c[i] - '0');
+        }
+        return new String(c);
+    }
+
+    public int[] closestRoom(int[][] rooms, int[][] queries) {
+        int n = rooms.length;
+        Arrays.sort(rooms, new Comparator<int[]>() {
+            @Override
+            public int compare(int[] a, int[] b) {
+                return a[1] == b[1] ? a[0] - b[0] : a[1] - b[1];
+            }
+        });
+        int k = queries.length;
+        int[] ans = new int[k];
+        int t = 0;
+        for (int[] q : queries) {
+            int p = q[0], ms = q[1];
+            int l = 0, r = n, y = n;
+            int tmp = (int) 1e9;
+            int id = tmp;
+            while (l < r) {
+                int mid = (l + r) >>> 1;
+                if (rooms[mid][1] < ms) {
+                    l = mid + 1;
+                } else {
+                    r = mid;
+                }
+            }
+            while (r < y) {
+                int mid = (y + r) >>> 1;
+//                if ()
+                if (tmp > Math.abs(p - mid)) {
+                    id = mid;
+                    tmp = Math.abs(p - mid);
+                } else if (tmp == Math.abs(p - mid)) {
+                    id = Math.min(id, mid);
+                }
+            }
+            if (tmp != (int) 1e9)
+                ans[t++] = id;
+            else
+                ans[t++] = -1;
+        }
+        return ans;
+    }
+
     public static void main(String[] args) {
         Solution s = new Solution();
-//        char[][] c = new char[][]{{'a', 'a', 'a', 'a'}, {'a', 'b', 'b', 'a'}, {'a', 'b', 'b', 'a'}, {'a', 'a', 'a', 'a'}};
-//        System.out.println(s.findLatestStep(new int[]{3, 5, 1, 2, 4}, 1));
-        System.out.println(s.splitArray(new int[]{7,2,5,10,8}, 2));
+        System.out.println(s.closestRoom(new int[][]{{2, 2}, {1, 2}, {3, 2}}, new int[][]{{3, 1}, {3, 3}, {5, 2}}));
     }
+
+
 }
+
+
+class Solution1 {
+
+    public int longestSubarray(int[] nums, int limit) {
+        Deque<Integer> maxQueue = new ArrayDeque<>();
+        Deque<Integer> minQueue = new ArrayDeque<>();
+        int l = 0, r = 0, res = 0;
+        while (r < nums.length) {
+            while (!maxQueue.isEmpty() && nums[r] > maxQueue.peekLast())
+                maxQueue.removeLast();
+            while (!minQueue.isEmpty() && nums[r] < minQueue.peekLast())
+                minQueue.removeLast();
+            maxQueue.add(nums[r]);
+            minQueue.add(nums[r]);
+            r++;
+            while (maxQueue.peek() - minQueue.peek() > limit) {
+                if (maxQueue.peek() == nums[l]) maxQueue.remove();
+                if (minQueue.peek() == nums[l]) minQueue.remove();
+                l += 1;
+            }
+            res = Math.max(res, r - l);
+        }
+        return res;
+    }
+
+    public int minimumXORSum(int[] nums1, int[] nums2) {
+        int m = nums1.length;
+        int n = nums2.length;
+        int maxn = 1 << n;
+        int[][] dp = new int[m + 1][maxn + 1];
+        for (int i = 1; i <= m; i++) Arrays.fill(dp[i], -1);
+        for (int i = 1; i <= m; i++) {
+            for (int z = 0; z < n; z++) {
+                for (int j = 0; j < maxn; j++) {
+                    if (((j >> z) & 1) == 1) continue;
+                    if (dp[i][j | (1 << z)] == -1 || dp[i][j | (1 << z)] > dp[i - 1][j] + (nums1[i - 1] ^ nums2[z]))
+                        dp[i][j | (1 << z)] = dp[i - 1][j] + nums1[i - 1] ^ nums2[z];
+                }
+            }
+        }
+        return dp[m][maxn - 1];
+    }
+
+    public static void main(String[] args) {
+        Solution1 s1 = new Solution1();
+        System.out.println(1 << 3 - 1);
+        System.out.println((1 << 3) - 1);
+    }
+
+}
+
+
 

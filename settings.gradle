@@ -1,2 +1,4 @@
 include ':jcc-bate-0.7.3'
 include ':app', ':lib'
+include ':apt-annotation'
+include ':apt-processor'

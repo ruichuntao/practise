@@ -1,8 +1,13 @@
 package rui.leetcode;
 
+import android.text.SpannableStringBuilder;
+
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.Collections;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
@@ -15,6 +20,7 @@ import java.util.Stack;
 public class LeetCode {
 
     int[][] dict = new int[][]{{-1, 0}, {1, 0}, {0, -1}, {0, 1}};
+    public String absc = "1241";
 
     public boolean isInArea(int[][] grid, int i, int j) {
         if (i < 0 || j < 0 || i >= grid.length || j >= grid[0].length)
@@ -5625,7 +5631,7 @@ public class LeetCode {
                 {'B', '1', '1', '1', 'B'},
                 {'B', 'B', 'B', 'B', 'B'}
         };
-        System.out.println(t.maxAreaOfIsland(grid));
+        new SpannableStringBuilder().append(null);
 //        System.out.println(t.fizzBuzz(15));
 
 

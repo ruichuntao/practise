@@ -392,10 +392,11 @@ class Main {
 //                }
 //            }
 //            System.out.println(shortestSubarray(new int[]{2, -1, 2}, 3));
+
+            System.out.println(Math.pow(0, 1));
         }
 
     }
 }
-
 
 
