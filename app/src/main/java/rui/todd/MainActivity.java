@@ -347,8 +347,12 @@ public class MainActivity extends BaseActivity implements DialogPopup.dialogList
 
     public void clickVideo(View view) {
         startActivity(new Intent(this, SurfaceMediaActivity.class));
+        boolean finishing = isFinishing();
 
     }
 
-
+    @Override
+    protected void onPostResume() {
+        super.onPostResume();
+    }
 }

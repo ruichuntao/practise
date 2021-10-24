@@ -237,9 +237,10 @@ class Solution {
         return gcd(b % a, a);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public static void main(String[] args) {
-        Solution s = new Solution();
-        System.out.println(s.gcd(45,6));
+        Arrays.asList(1, 2, 3, 4, 5, 6).parallelStream()
+                .reduce(0, (x, t) -> (t & 1) == 1 ? x + t : x, (x, y) -> x + y);
     }
 }
 
