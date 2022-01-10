@@ -369,11 +369,14 @@
                 android:onClick="clickVideo"
                 android:text="视频播放"
                 android:textSize="30sp" />
-
-            <EditText
-                android:id="@+id/eddd"
+            <TextView
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:onClick="clickBanner"
+                android:text="banner测试"
+                android:textSize="30sp" />
+
         </LinearLayout>
 
 

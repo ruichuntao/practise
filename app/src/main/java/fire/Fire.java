@@ -50,7 +50,6 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.locks.LockSupport;
 import java.util.concurrent.locks.ReentrantLock;
 
-import leakcanary.LeakCanary;
 import rui.todd.R;
 
 public class Fire {

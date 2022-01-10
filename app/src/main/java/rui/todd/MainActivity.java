@@ -6,16 +6,24 @@ import android.animation.ValueAnimator;
 import android.app.ActionBar;
 import android.app.Dialog;
 import android.app.Fragment;
+import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.IBinder;
+import android.os.Looper;
 import android.os.Message;
+import android.os.Messenger;
+import android.os.RemoteException;
+import android.provider.Settings;
 import android.text.Html;
 import android.util.DisplayMetrics;
 import android.util.Log;
@@ -63,6 +71,7 @@ import okhttp3.Request;
 import rui.dialog.ExpEvaluatedDialog;
 import rui.dialog.ExpEvaluationDialog;
 import rui.proxy.HookManager;
+import rui.service.MessengerService;
 import rui.viewmodel.UserModel;
 
 import static androidx.core.text.HtmlCompat.FROM_HTML_MODE_LEGACY;
@@ -80,43 +89,6 @@ public class MainActivity extends BaseActivity implements DialogPopup.dialogList
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        Log.e(TAG, "onCreate: ");
-    }
-
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.e(TAG, "onStart: ");
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        Log.e(TAG, "onRestart: ");
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.e(TAG, "onResume: ");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.e(TAG, "onPause: ");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.e(TAG, "onStop: ");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.e(TAG, "onDestroy: ");
     }
 
     @Override
@@ -347,12 +319,33 @@ public class MainActivity extends BaseActivity implements DialogPopup.dialogList
 
     public void clickVideo(View view) {
         startActivity(new Intent(this, SurfaceMediaActivity.class));
-        boolean finishing = isFinishing();
+    }
 
+    public void clickBanner(View view) {
+        startActivity(new Intent(this, BannerActivity.class));
     }
 
     @Override
     protected void onPostResume() {
         super.onPostResume();
     }
+
+    private Messenger mService;
+
+    private boolean bound;
+
+    ServiceConnection connection = new ServiceConnection() {
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            mService = new Messenger(service);
+            bound = true;
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+            bound = false;
+        }
+    };
+
+
 }
