@@ -102,29 +102,21 @@ class AcpVideoView(context: Context) : FrameLayout(context), IBaseMediaPlayer {
             }
         })
         mSurface.surfaceTextureListener = object : TextureView.SurfaceTextureListener {
-            override fun onSurfaceTextureAvailable(
-                surface: SurfaceTexture?,
-                width: Int,
-                height: Int
-            ) {
-                Log.e(TAG, "onSurfaceTextureAvailable: ")
-                mPlayer.setSurface(Surface(surface))
+
+            override fun onSurfaceTextureAvailable(p0: SurfaceTexture, p1: Int, p2: Int) {
+                mPlayer.setSurface(Surface(p0))
             }
 
-            override fun onSurfaceTextureSizeChanged(
-                surface: SurfaceTexture?,
-                width: Int,
-                height: Int
-            ) {
-                Log.e(TAG, "onSurfaceTextureSizeChanged: ")
+            override fun onSurfaceTextureSizeChanged(p0: SurfaceTexture, p1: Int, p2: Int) {
+
             }
 
-            override fun onSurfaceTextureDestroyed(surface: SurfaceTexture?): Boolean {
-                Log.e(TAG, "onSurfaceTextureDestroyed: ")
+            override fun onSurfaceTextureDestroyed(p0: SurfaceTexture): Boolean {
                 return false
             }
 
-            override fun onSurfaceTextureUpdated(surface: SurfaceTexture?) {
+            override fun onSurfaceTextureUpdated(p0: SurfaceTexture) {
+
             }
 
         }

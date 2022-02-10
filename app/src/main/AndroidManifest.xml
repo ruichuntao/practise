@@ -19,6 +19,9 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".ComposeActivity"
+            android:exported="true" />
+        <activity
             android:name=".FlowViewActivity"
             android:exported="false" />
         <activity
@@ -100,6 +103,7 @@
         <activity android:name=".LoveAnimActivity" />
         <activity
             android:name=".MainActivity"
+            android:exported="true"
             android:screenOrientation="fullSensor">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
