@@ -21,7 +21,6 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.resource.gif.GifDrawable;
 
 import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.util.ErrorDialogManager;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.ref.Reference;

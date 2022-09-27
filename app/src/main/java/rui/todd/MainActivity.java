@@ -1,80 +1,50 @@
 package rui.todd;
 
-import android.animation.LayoutTransition;
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
-import android.app.ActionBar;
 import android.app.Dialog;
-import android.app.Fragment;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.content.SharedPreferences;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Looper;
-import android.os.Message;
 import android.os.Messenger;
-import android.os.RemoteException;
-import android.provider.Settings;
-import android.text.Html;
-import android.util.DisplayMetrics;
+import android.text.TextUtils;
 import android.util.Log;
-import android.util.SparseArray;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.LinearInterpolator;
-import android.widget.Adapter;
-import android.widget.BaseAdapter;
-import android.widget.EditText;
 import android.widget.FrameLayout;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.fragment.app.FragmentPagerAdapter;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ReportFragment;
-import androidx.lifecycle.ViewModel;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.transition.FragmentTransitionSupport;
-import androidx.viewpager.widget.ViewPager;
 
-import com.airbnb.lottie.LottieAnimationView;
-import com.bumptech.glide.Glide;
+import com.aigestudio.wheelpicker.WheelPicker;
 import com.example.apt_annotation.Print;
-import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
-import java.io.ByteArrayOutputStream;
-import java.util.Collections;
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
-import java.util.Scanner;
+import java.util.Map;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
-import okhttp3.Call;
-import okhttp3.Request;
-import rui.dialog.ExpEvaluatedDialog;
+import rui.bean.Province;
 import rui.dialog.ExpEvaluationDialog;
-import rui.proxy.HookManager;
-import rui.service.MessengerService;
-import rui.viewmodel.UserModel;
-
-import static androidx.core.text.HtmlCompat.FROM_HTML_MODE_LEGACY;
+import rui.todd.databinding.LayoutCityWheelPickerBinding;
 
 public class MainActivity extends BaseActivity implements DialogPopup.dialogListener {
     private static final String TAG = "MainActivity";
@@ -325,6 +295,62 @@ public class MainActivity extends BaseActivity implements DialogPopup.dialogList
         startActivity(new Intent(this, BannerActivity.class));
     }
 
+
+    int selectProvince;
+    int selectCity;
+
+    public void clickCompose(View view) {
+        LayoutCityWheelPickerBinding bind = LayoutCityWheelPickerBinding.inflate(LayoutInflater.from(this));
+        bind.province.setCurved(true);
+        bind.city.setCurved(true);
+        String json = null;
+        try {
+            InputStream open = getAssets().open("cityList.json");
+            int size = open.available();
+            byte[] bytes = new byte[size];
+            open.read(bytes);
+            open.close();
+            json = new String(bytes, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        ArrayList<Province> cityJson = new Gson().fromJson(json, new TypeToken<List<Province>>() {
+        }.getType());
+        int size = cityJson.size();
+        List<List<String>> map = new ArrayList<>();
+        List<String> province = new ArrayList<>(size);
+        for (Province p : cityJson) {
+            province.add(p.name);
+            List<String> city = new ArrayList<>();
+            for (Province.City c : p.subOpt) {
+                city.add(c.name);
+            }
+            map.add(city);
+        }
+        bind.province.setData(province);
+        bind.city.setData(map.get(0));
+        bind.province.setOnItemSelectedListener((picker, data, position) -> {
+            bind.city.setData(map.get(position));
+            selectProvince = position;
+        });
+        bind.city.setOnItemSelectedListener(new WheelPicker.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(WheelPicker picker, Object data, int position) {
+                selectCity = position;
+            }
+        });
+        Dialog dialog = new BottomSheetDialog(this);
+        dialog.getWindow().getDecorView().setPadding(0, 0, 0, 0);
+        dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        dialog.show();
+        dialog.setContentView(bind.getRoot());
+        bind.cancel.setOnClickListener(v -> dialog.dismiss());
+        bind.submit.setOnClickListener(v -> {
+            dialog.dismiss();
+            Log.e(TAG, "clickCompose: " + province.get(selectProvince) + map.get(selectProvince).get(selectCity));
+        });
+    }
+
     @Override
     protected void onPostResume() {
         super.onPostResume();
@@ -346,6 +372,5 @@ public class MainActivity extends BaseActivity implements DialogPopup.dialogList
             bound = false;
         }
     };
-
 
 }

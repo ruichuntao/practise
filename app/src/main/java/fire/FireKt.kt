@@ -6,5 +6,10 @@ class FireKt {
 }
 
 fun main() {
-    val kt = FireKt()
+    val a = "12"
+    val ch = charArrayOf('1','2')
+    val b = String(ch)
+    println(a == b)
+    println(a.equals(b))
+    println(a === b)
 }

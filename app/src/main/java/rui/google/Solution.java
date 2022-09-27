@@ -64,7 +64,75 @@ public class Solution {
         return ans;
     }
 
-    public static void main(String[] args) {
+    public long minimalKSum(int[] nums, int k) {
+        Arrays.sort(nums);
+        int s = 1, n = nums.length;
+        long ans = 0;
+//        System.out.println(Arrays.toString(nums));
+        for (int i = 0; i < n; ) {
+            if (nums[i] > s && k > 0) {
+                System.out.print(s + ",");
+                ans += s;
+                s++;
+                k--;
+            } else {
+                s = nums[i] + 1;
+                i++;
+            }
+            if (k == 0) break;
+        }
+        s = nums[n - 1] + 1;
+        while (k > 0) {
+            ans += s;
+            k--;
+            s++;
+        }
+        return ans;
+    }
 
+    int[] ans = new int[12];
+    int[] arrows;
+    int max = 0;
+
+    void fun(int[] cur, int num) {
+        if (num == 0) {
+            int sum = 0;
+            for (int i = 0; i < 12; i++) {
+                if (cur[i] > arrows[i]) sum += i;
+            }
+            if (sum > max) {
+                max = sum;
+                System.arraycopy(cur, 0, ans, 0, 12);
+            }
+            return;
+        }
+        for (int i = 0; i < 12; i++) {
+            cur[i]++;
+            fun(cur, num - 1);
+            cur[i]--;
+        }
+    }
+
+    public int[] maximumBobPoints(int numArrows, int[] aliceArrows) {
+        arrows = aliceArrows;
+        fun(new int[12], numArrows);
+        return ans;
+    }
+
+    public int[][] transpose(int[][] matrix) {
+        int m = matrix.length;
+        int n = matrix[m].length;
+        int[][] arr = new int[n][m];
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                arr[j][i] = matrix[i][j];
+            }
+        }
+        return arr;
+    }
+
+    public static void main(String[] args) {
+        Solution s = new Solution();
+        System.out.println(s.transpose(new int[][]{{1, 2, 3}, {4, 5, 6}, {7, 8, 9}}));
     }
 }

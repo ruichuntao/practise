@@ -1,4 +1,4 @@
-Classfile /Users/rui/practise/app/src/main/java/rui/leetcode/Solution.class
+Classfile /Users/rui/practise/app/src/sohu.main/java/rui/leetcode/Solution.class
   Last modified 2020年8月24日; size 1026 bytes
   SHA-256 checksum fb26c29affd4219a03d7add2c6952dd01d7f226b4b9754a769159bd1d69224ad
   Compiled from "Solution.java"
@@ -52,7 +52,7 @@ Constant pool:
   #40 = Utf8               StackMapTable
   #41 = Utf8               findLatestStep
   #42 = Utf8               ([II)I
-  #43 = Utf8               main
+  #43 = Utf8               sohu.main
   #44 = Utf8               ([Ljava/lang/String;)V
   #45 = Utf8               SourceFile
   #46 = Utf8               Solution.java
@@ -286,7 +286,7 @@ Constant pool:
         frame_type = 250 /* chop */
           offset_delta = 5
 
-  public static void main(String[]);
+  public static void sohu.main(String[]);
     descriptor: ([Ljava/lang/String;)V
     flags: (0x0009) ACC_PUBLIC, ACC_STATIC
     Code:

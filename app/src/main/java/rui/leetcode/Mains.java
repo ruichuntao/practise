@@ -692,7 +692,7 @@ class WordDictionary {
 //        return root.isEnd;
 //    }
 //
-//    public static void main(String[] args) {
+//    public static void sohu.main(String[] args) {
 //        WordDictionary d = new WordDictionary();
 ////        d.addWord("bad");
 ////        d.addWord("dad");

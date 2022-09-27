@@ -7,11 +7,18 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="../../../layout/custom_preview.xml" value="0.3098958333333333" />
+        <entry key="app/src/main/res/drawable/corners_danmu.xml" value="0.177" />
         <entry key="app/src/main/res/layout/activity_banner.xml" value="0.19739583333333333" />
         <entry key="app/src/main/res/layout/activity_banner2.xml" value="0.19739583333333333" />
+        <entry key="app/src/main/res/layout/activity_dan_mu.xml" value="0.290625" />
         <entry key="app/src/main/res/layout/activity_flow_view.xml" value="0.18072916666666666" />
+        <entry key="app/src/main/res/layout/activity_label.xml" value="0.290625" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_maquee.xml" value="0.290625" />
         <entry key="app/src/main/res/layout/item_banner_layout.xml" value="0.19739583333333333" />
+        <entry key="app/src/main/res/layout/item_label_layout.xml" value="0.290625" />
+        <entry key="app/src/main/res/layout/layout_city_wheel_picker.xml" value="0.2911458333333333" />
       </map>
     </option>
   </component>
